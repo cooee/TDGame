@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="12" height="8" tilewidth="80" tileheight="80">
+ <tileset firstgid="1" name="2" tilewidth="80" tileheight="80">
+  <image source="2.png" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="17" name="1" tilewidth="80" tileheight="80">
+  <image source="1.png" width="720" height="721"/>
+ </tileset>
+ <tileset firstgid="98" name="build" tilewidth="80" tileheight="80">
+  <image source="build.png" width="80" height="80"/>
+  <tile id="0">
+   <properties>
+    <property name="buildable" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="99" name="road" tilewidth="80" tileheight="80">
+  <image source="road.png" width="80" height="80"/>
+  <tile id="0">
+   <properties>
+    <property name="skillable" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="100" name="rebuild" tilewidth="80" tileheight="80">
+  <image source="rebuild.png" width="400" height="160"/>
+  <tile id="0">
+   <properties>
+    <property name="rebuildable" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="rebuildable" value="2"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="rebuildable" value="3"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="rebuildable" value="4"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="rebuildable" value="5"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="rebuildable" value="6"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="rebuildable" value="7"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="rebuildable" value="8"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="rebuildable" value="9"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="rebuildable" value="10"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="BACKGROUND1" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJyTZmBgUIFiaSKxChY9uNjo6tHVYbMbWQxdLy63osuRqp4Us/BhdPfjCgMYBgDlAAwH
+  </data>
+ </layer>
+ <layer name="BACKGROUND2" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJyNkFEOgCAMQxtFFFDg/qe1JDTuw2Q0eRkf22gXAZzkIg+ppE06SSSbnlELufEv7SgT7fOkuZ2Ehf6DROPLk3LYLCt+lNebkR/9oRtt+DLZt/y8pTMB7A==
+  </data>
+ </layer>
+ <layer name="BACKGROUND3" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxzYWBgcGWAgBggjiVAIwNBIBZCw8IM2AFIrSoWcSk0/TAgg8McXACbenxuwmc+NjkpHOag+0sEiEWBWIwB029CULWmQGwGxOZADAAERQcu
+  </data>
+ </layer>
+ <layer name="BACKGROUND4" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJyzZmBgsAFiZyB2AWJXBlQAE4fR2NRQC5jQyFxygS8QWxCp1hyq1hGI/YhQ7wBVCwCUAAUT
+  </data>
+ </layer>
+ <layer name="SEEDLAYER" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj8QByIJYBYkkj1CkCsCMRKRKrXBGItINYm2WWUAwC6MAEq
+  </data>
+ </layer>
+ <layer name="BACKGROUND5" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgcAZiFyB2ZcAO0OUNcKhDBr5ArAtV64sml4BHXzwSOwyIw9Hk9aBqsJkbj8dskFpTNDFlPO4AqbdDYqMDXPaYA7EFHnNhAOQWMyAGACVBCKw=
+  </data>
+ </layer>
+ <layer name="Meta" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPJFEgh4xxyaOzcZlPjHpSzCdWPzF2EQMAwRoJMQ==
+  </data>
+ </layer>
+ <layer name="Towerface" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfJOPA+NTiMwNdnFS3kGovKWYRcj8+u/GFDwD+Cgpy
+  </data>
+ </layer>
+ <layer name="Rebuild" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPpJApRw2QSqI4te3OZYD4MZcK5gEAB24DNg==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="12" height="8">
+  <object name="RapidSoliderPos" x="920" y="120"/>
+  <object name="WayPoint00" x="920" y="200"/>
+  <object name="WayPoint01" x="680" y="200"/>
+  <object name="WayPoint02" x="680" y="120"/>
+  <object name="WayPoint03" x="280" y="120"/>
+  <object name="WayPoint04" x="280" y="200"/>
+  <object name="WayPoint05" x="200" y="200"/>
+  <object name="WayPoint06" x="200" y="520"/>
+  <object name="WayPoint07" x="280" y="520"/>
+  <object name="WayPoint08" x="280" y="600"/>
+  <object name="WayPoint09" x="680" y="600"/>
+  <object name="WayPoint10" x="680" y="520"/>
+  <object name="WayPoint11" x="760" y="520"/>
+  <object name="WayPoint12" x="760" y="360"/>
+  <object name="WayPoint13" x="600" y="360"/>
+  <object name="SeedsPos" x="600" y="280"/>
+ </objectgroup>
+</map>

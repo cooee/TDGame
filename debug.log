@@ -1,0 +1,14 @@
+[LUA-print] resource node = nil
+
+[LUA-print] dump from: [string "app/views/MainScene.lua"]:39: in function 'callBackProvider'
+
+[LUA-print] - "MainScene_layout.lua" = "luaFileName"
+
+[LUA-print] dump from: [string "app/views/MainScene.lua"]:40: in function 'callBackProvider'
+
+[LUA-print] - userdata: 0x04d163f8 = "node"
+
+[LUA-print] dump from: [string "app/views/MainScene.lua"]:41: in function 'callBackProvider'
+
+[LUA-print] - "onBtnClick" = "callbackName"
+

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="12" height="8" tilewidth="80" tileheight="80">
+ <tileset firstgid="1" name="build" tilewidth="80" tileheight="80">
+  <image source="build.png" width="80" height="80"/>
+  <tile id="0">
+   <properties>
+    <property name="buildable" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="road" tilewidth="80" tileheight="80">
+  <image source="road.png" width="80" height="80"/>
+  <tile id="0">
+   <properties>
+    <property name="skillable" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="rebuild_4" tilewidth="80" tileheight="80">
+  <image source="rebuild_4.png" width="400" height="160"/>
+  <tile id="0">
+   <properties>
+    <property name="rebuildable" value="31"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="rebuildable" value="32"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="rebuildable" value="33"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="rebuildable" value="34"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="rebuildable" value="35"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="rebuildable" value="36"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="rebuildable" value="37"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="rebuildable" value="38"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="rebuildable" value="39"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="rebuildable" value="40"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="13" name="41" tilewidth="80" tileheight="80">
+  <image source="41.png" width="480" height="480"/>
+ </tileset>
+ <tileset firstgid="49" name="42" tilewidth="80" tileheight="80">
+  <image source="42.png" width="240" height="240"/>
+ </tileset>
+ <tileset firstgid="58" name="4geduan" tilewidth="80" tileheight="80">
+  <image source="4geduan.png" width="160" height="240"/>
+ </tileset>
+ <layer name="BACKGROUND1" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJyF0GsKgCAQBGAvYFEGRdHLwtLq/tdrhAmWkPrx4WvYVbVSKvuRQw0NGLhghulDBb3Ij3DSIeYnMwEWzuPe9lG7A8t7mUS9525W7I3MtlxfHAPPwqvnzryHAkpwrz6ebxxAs7YTf+UT+fjGVdS+AXCkC/g=
+  </data>
+ </layer>
+ <layer name="BACKGROUND2" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj8wBYJEwPskfBgBwAX/wF1
+  </data>
+ </layer>
+ <layer name="SEEDLAYER" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjZwBCIjYDYmEj1JkBsCsRmRKo3B2ILILbEIQ8Ai6QB3g==
+  </data>
+ </layer>
+ <layer name="Meta" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAdMJKpnhEHpob5uMzDJ0aqPbQAABC8ABM=
+  </data>
+ </layer>
+ <layer name="Towerface" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPMBHA2NRT03x85mFTQ4z9xJpPTQAALxAANQ==
+  </data>
+ </layer>
+ <layer name="Rebuild" width="12" height="8">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA9YEajYWxmNDFa2U1rOygBABToABY=
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="12" height="8">
+  <object name="RapidSoliderPos" x="840" y="200"/>
+  <object name="WayPoint00" x="840" y="120"/>
+  <object name="WayPoint01" x="200" y="120"/>
+  <object name="WayPoint02" x="200" y="280"/>
+  <object name="WayPoint03" x="840" y="280"/>
+  <object name="WayPoint04" x="840" y="440"/>
+  <object name="WayPoint05" x="600" y="440"/>
+  <object name="WayPoint06" x="600" y="360"/>
+  <object name="WayPoint07" x="440" y="360"/>
+  <object name="WayPoint08" x="440" y="440"/>
+  <object name="SeedsPos" x="520" y="440"/>
+ </objectgroup>
+</map>

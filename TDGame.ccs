@@ -1,0 +1,79 @@
+<Solution>
+  <PropertyGroup Name="TDGame" Version="2.3.2.3" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene_layout.csd" Type="Scene" />
+        <Image Name="HelloWorld.png" />
+        <Image Name="Button_Normal.png" />
+        <Image Name="Button_Press.png" />
+        <Image Name="SheetEditor.png" />
+        <Project Name="editor_layout.csd" Type="Layer" />
+        <PlistImageFolder Image="SheetEditor.png" PListFile="SheetEditor.plist" Name=".SheetEditor_PList.Dir">
+          <PlistImageFile Name="AddPathPointButton.png" Key="AddPathPointButton.png" />
+          <PlistImageFile Name="AddPathPointButtonDisabled.png" Key="AddPathPointButtonDisabled.png" />
+          <PlistImageFile Name="AddPathPointButtonSelected.png" Key="AddPathPointButtonSelected.png" />
+          <PlistImageFile Name="BehaviorLabelBackground.png" Key="BehaviorLabelBackground.png" />
+          <PlistImageFile Name="BehaviorLabelLocked.png" Key="BehaviorLabelLocked.png" />
+          <PlistImageFile Name="BehaviorLabelSelected.png" Key="BehaviorLabelSelected.png" />
+          <PlistImageFile Name="BindObjectToPathButton.png" Key="BindObjectToPathButton.png" />
+          <PlistImageFile Name="BindObjectToPathButtonDisabled.png" Key="BindObjectToPathButtonDisabled.png" />
+          <PlistImageFile Name="BindObjectToPathButtonSelected.png" Key="BindObjectToPathButtonSelected.png" />
+          <PlistImageFile Name="CenterFlag.png" Key="CenterFlag.png" />
+          <PlistImageFile Name="ChangeObjectTypeButton.png" Key="ChangeObjectTypeButton.png" />
+          <PlistImageFile Name="ChangeObjectTypeButtonDisabled.png" Key="ChangeObjectTypeButtonDisabled.png" />
+          <PlistImageFile Name="ChangeObjectTypeButtonSelected.png" Key="ChangeObjectTypeButtonSelected.png" />
+          <PlistImageFile Name="CreateObjectButton.png" Key="CreateObjectButton.png" />
+          <PlistImageFile Name="CreateObjectButtonSelected.png" Key="CreateObjectButtonSelected.png" />
+          <PlistImageFile Name="CreatePathButton.png" Key="CreatePathButton.png" />
+          <PlistImageFile Name="CreatePathButtonSelected.png" Key="CreatePathButtonSelected.png" />
+          <PlistImageFile Name="CreateRangeButton.png" Key="CreateRangeButton.png" />
+          <PlistImageFile Name="CreateRangeButtonSelected.png" Key="CreateRangeButtonSelected.png" />
+          <PlistImageFile Name="DragMapButton.png" Key="DragMapButton.png" />
+          <PlistImageFile Name="DragMapButtonSelected.png" Key="DragMapButtonSelected.png" />
+          <PlistImageFile Name="EditButton.png" Key="EditButton.png" />
+          <PlistImageFile Name="EditorPanelBg.png" Key="EditorPanelBg.png" />
+          <PlistImageFile Name="EditorPanelCloseButton.png" Key="EditorPanelCloseButton.png" />
+          <PlistImageFile Name="EditorPanelPositionButton.png" Key="EditorPanelPositionButton.png" />
+          <PlistImageFile Name="LinkToPathButton.png" Key="LinkToPathButton.png" />
+          <PlistImageFile Name="LinkToPathButtonDisabled.png" Key="LinkToPathButtonDisabled.png" />
+          <PlistImageFile Name="LinkToPathButtonSelected.png" Key="LinkToPathButtonSelected.png" />
+          <PlistImageFile Name="ObjectBindingDisabled.png" Key="ObjectBindingDisabled.png" />
+          <PlistImageFile Name="ObjectBindingEnabled.png" Key="ObjectBindingEnabled.png" />
+          <PlistImageFile Name="ObjectMovingBackwardFlag.png" Key="ObjectMovingBackwardFlag.png" />
+          <PlistImageFile Name="ObjectMovingForwardFlag.png" Key="ObjectMovingForwardFlag.png" />
+          <PlistImageFile Name="PlayMapButton.png" Key="PlayMapButton.png" />
+          <PlistImageFile Name="PlayMapButtonSelected.png" Key="PlayMapButtonSelected.png" />
+          <PlistImageFile Name="PointFlag.png" Key="PointFlag.png" />
+          <PlistImageFile Name="RangeFlag.png" Key="RangeFlag.png" />
+          <PlistImageFile Name="RangeHandler.png" Key="RangeHandler.png" />
+          <PlistImageFile Name="RemoveObjectButton.png" Key="RemoveObjectButton.png" />
+          <PlistImageFile Name="RemoveObjectButtonSelected.png" Key="RemoveObjectButtonSelected.png" />
+          <PlistImageFile Name="RemovePathPointButton.png" Key="RemovePathPointButton.png" />
+          <PlistImageFile Name="RemovePathPointButtonDisabled.png" Key="RemovePathPointButtonDisabled.png" />
+          <PlistImageFile Name="RemovePathPointButtonSelected.png" Key="RemovePathPointButtonSelected.png" />
+          <PlistImageFile Name="RemoveRangeButton.png" Key="RemoveRangeButton.png" />
+          <PlistImageFile Name="RemoveRangeButtonSelected.png" Key="RemoveRangeButtonSelected.png" />
+          <PlistImageFile Name="SaveMapButton.png" Key="SaveMapButton.png" />
+          <PlistImageFile Name="SaveMapButtonSelected.png" Key="SaveMapButtonSelected.png" />
+          <PlistImageFile Name="SelectObjectButton.png" Key="SelectObjectButton.png" />
+          <PlistImageFile Name="SelectObjectButtonSelected.png" Key="SelectObjectButtonSelected.png" />
+          <PlistImageFile Name="SelectPathPointButton.png" Key="SelectPathPointButton.png" />
+          <PlistImageFile Name="SelectPathPointButtonSelected.png" Key="SelectPathPointButtonSelected.png" />
+          <PlistImageFile Name="SelectRangeButton.png" Key="SelectRangeButton.png" />
+          <PlistImageFile Name="SelectRangeButtonSelected.png" Key="SelectRangeButtonSelected.png" />
+          <PlistImageFile Name="StopMapButton.png" Key="StopMapButton.png" />
+          <PlistImageFile Name="StopMapButtonSelected.png" Key="StopMapButtonSelected.png" />
+          <PlistImageFile Name="ToggleBackgroundButton.png" Key="ToggleBackgroundButton.png" />
+          <PlistImageFile Name="ToggleBackgroundButtonSelected.png" Key="ToggleBackgroundButtonSelected.png" />
+          <PlistImageFile Name="ToggleDebugButton.png" Key="ToggleDebugButton.png" />
+          <PlistImageFile Name="ToggleDebugButtonSelected.png" Key="ToggleDebugButtonSelected.png" />
+          <PlistImageFile Name="ToolbarBg.png" Key="ToolbarBg.png" />
+          <PlistImageFile Name="ZoomInButton.png" Key="ZoomInButton.png" />
+          <PlistImageFile Name="ZoomOutButton.png" Key="ZoomOutButton.png" />
+        </PlistImageFolder>
+        <Image Name="00080.jpg" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
