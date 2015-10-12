@@ -26,6 +26,7 @@ function EditorScene:ctor()
     local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
     btn:move(100,100);
     btn:addTo(self);
+    
     btn:setContentSize(64,64);
 
     -- self.gameCtr = GameCtr.new();

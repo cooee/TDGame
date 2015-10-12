@@ -1397,17 +1397,13 @@ WebSocket was deprecated please use cc.WebSocket instead.
 
 [LUA-print] [INFO] # device.language              = cn
 
-[LUA-print] [INFO] # device.writablePath          = C:/Users/Administrator/AppData/Local/TDGame/
+[LUA-print] [INFO] # device.writablePath          = C:/Users/YuchengMo/AppData/Local/TDGame/
 
 [LUA-print] [INFO] # device.directorySeparator    = \
 
 [LUA-print] [INFO] # device.pathSeparator         = ;
 
 [LUA-print] [INFO] #
-
-[LUA-print] 11111111111111111111111111111111111111111111111
-
-[LUA-print] ratio 1.7777777777778
 
 [LUA-print] CONFIG_SCREEN_AUTOSCALE FIXED_WIDTH
 
@@ -1427,7 +1423,7 @@ WebSocket was deprecated please use cc.WebSocket instead.
 
 [LUA-print] -     "autoscale" = "FIXED_WIDTH"
 
-[LUA-print] -     "callback"  = function: 0x03fe0d88
+[LUA-print] -     "callback"  = function: 0x073f0f40
 
 [LUA-print] -     "height"    = 720
 
@@ -1493,31 +1489,45 @@ WebSocket was deprecated please use cc.WebSocket instead.
 
 [LUA-print] UICreator:ctor
 
-[LUA-print] [INFO] cc.load() - load module "packages.mvc.init"
+[LUA-print] dump from: [string "quick/framework/util/UICreator.lua"]:62: in function 'createImage'
 
-[LUA-print] dump from: [string "packages/mvc/AppBase.lua"]:23: in function 'ctor'
+[LUA-print] - "<var>" = {
 
-[LUA-print] - "AppBase configs" = {
+[LUA-print] -     "file"       = "DragMapButton.png"
 
-[LUA-print] -     "defaultSceneName" = "MainScene"
+[LUA-print] -     "scale9Rect" = {
 
-[LUA-print] -     "modelsRoot" = {
+[LUA-print] -         1 = 5
 
-[LUA-print] -         1 = "app.models"
+[LUA-print] -         2 = 5
 
-[LUA-print] -     }
+[LUA-print] -         3 = 5
 
-[LUA-print] -     "viewsRoot" = {
-
-[LUA-print] -         1 = "app.views"
+[LUA-print] -         4 = 5
 
 [LUA-print] -     }
 
 [LUA-print] - }
 
-[LUA-print] resource node = nil
+[LUA-print] dump from: [string "quick/framework/util/UICreator.lua"]:64: in function 'createImage'
 
-[LUA-print] dump from: [string "quick/framework/util/UICreator.lua"]:37: in function 'setScaleRect'
+[LUA-print] - "<var>" = {
+
+[LUA-print] -     1 = 5
+
+[LUA-print] -     2 = 5
+
+[LUA-print] -     3 = 5
+
+[LUA-print] -     4 = 5
+
+[LUA-print] - }
+
+[LUA-print] dump from: [string "quick/framework/extends/ImageViewEx.lua"]:9: in function 'setScale9Rect'
+
+[LUA-print] - "<var>" = 5
+
+[LUA-print] dump from: [string "quick/framework/extends/ImageViewEx.lua"]:12: in function 'setScale9Rect'
 
 [LUA-print] - "<var>" = {
 
@@ -1527,13 +1537,7 @@ WebSocket was deprecated please use cc.WebSocket instead.
 
 [LUA-print] - }
 
-[LUA-print] dump from: [string "app/views/MainScene.lua"]:60: in function 'createResoueceNode2'
+[LUA-print] dump from: [string "src/main.lua"]:23: in function <[string "src/main.lua"]:16>
 
-[LUA-print] - "<var>" = {
-
-[LUA-print] -     "height" = 40
-
-[LUA-print] -     "width"  = 40
-
-[LUA-print] - }
+[LUA-print] - "<var>" = userdata: 0x07383480
 
