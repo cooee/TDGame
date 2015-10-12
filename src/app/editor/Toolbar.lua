@@ -75,41 +75,44 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
     if self.sprite_ then return end
 
     self.sprite_ = display.newNode()
-    local bg = display.newSprite(bgImageName)
-    bg:setScaleX((display.width / bg:getContentSize().width) * 2)
-    bg:setScaleY(scale * toolbarLines)
+    local bg = g_UICreator:createImage(bgImageName);
+    bg:setContentSize(display.width,96);
+    bg:setScale9Rect(5,5,5,5);
     bg:align(display.CENTER_BOTTOM, display.cx, 0)
     self.toolbarHeight_ = bg:getContentSize().height * scale
     self.sprite_:addChild(bg)
 
     parent:addChild(self.sprite_)
 
-    -- local menu = display.newNode()
-    -- local items = {}
-    -- for toolIndex, toolName in ipairs(self.toolsName_) do
-    --     if toolbarLines > 1 and toolIndex == 3 then
-    --         items[#items + 1] = "#"
-    --     elseif toolIndex > 1 then
-    --         items[#items + 1] = "-"
-    --     end
+    local menu = display.newNode()
+    local items = {}
+    for toolIndex, toolName in ipairs(self.toolsName_) do
+        if toolbarLines > 1 and toolIndex == 3 then
+            items[#items + 1] = "#"
+        elseif toolIndex > 1 then
+            items[#items + 1] = "-"
+        end
 
-    --     local tool = self.tools_[toolName]
-    --     tool.buttonsSprite = {}
-    --     for buttonIndex, button in ipairs(tool.buttons) do
-    --         button.sprite = cc.ui.UICheckBoxButton.new({
-    --             off = button.image,
-    --             on = button.imageSelected,
-    --         })
-    --         button.sprite:onButtonClicked(function() self:onButtonTap(tool, button) end)
-    --         button.sprite:setScale(scale)
-    --         menu:addChild(button.sprite)
-    --         tool.buttonsSprite[#tool.buttonsSprite + 1] = button.sprite
-    --         items[#items + 1] = button.sprite
-    --     end
-    -- end
+        local tool = self.tools_[toolName]
+        tool.buttonsSprite = {}
+        for buttonIndex, button in ipairs(tool.buttons) do
+            dump(button);
+            button.sprite = g_UICreator:createCheckBox({
+                normal = button.image,
+                pressed = button.imageSelected,
+            })
 
-    -- self.sprite_:addChild(menu)
-    -- AutoLayout.alignItemsHorizontally(items, padding * scale, self.toolbarHeight_ / 2, padding * scale, toolbarLines)
+
+            -- button.sprite:onButtonClicked(function() self:onButtonTap(tool, button) end)
+            button.sprite:setScale(scale)
+            menu:addChild(button.sprite)
+            tool.buttonsSprite[#tool.buttonsSprite + 1] = button.sprite
+            items[#items + 1] = button.sprite
+        end
+    end
+
+    self.sprite_:addChild(menu)
+    AutoLayout.alignItemsHorizontally(items, padding * scale, self.toolbarHeight_ / 2, padding * scale, toolbarLines)
 
     -- -- 放大缩小按钮
     -- local zoomInButton = ui.newImageMenuItem({

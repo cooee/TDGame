@@ -23,11 +23,11 @@ function EditorScene:ctor()
     end
 
     cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
-    local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
-    btn:move(100,100);
-    btn:addTo(self);
+    -- local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
+    -- btn:move(100,100);
+    -- btn:addTo(self);
     
-    btn:setContentSize(64,64);
+    -- btn:setContentSize(64,64);
 
     -- self.gameCtr = GameCtr.new();
 
@@ -44,9 +44,9 @@ function EditorScene:ctor()
     -- self:addChild(self.touchLayer_)
 
     -- uiLayer 用于显示编辑器的 UI（工具栏等）
-    -- self.uiLayer_ = display.newNode()
-    -- self.uiLayer_:setPosition(0, 0)
-    -- self:addChild(self.uiLayer_)
+    self.uiLayer_ = display.newNode()
+    self.uiLayer_:setPosition(0, 0)
+    self:addChild(self.uiLayer_)
 
 
 
@@ -60,16 +60,16 @@ function EditorScene:ctor()
 
 
     -- 创建工具栏
-    -- self.toolbar_ = require("app.editor.Toolbar").new(self.map_)
-    -- -- self.toolbar_:addTool(require("app.editor.GeneralTool").new(self.toolbar_, self.map_))
-    -- -- self.toolbar_:addTool(require("app.editor.ObjectTool").new(self.toolbar_, self.map_))
-    -- -- self.toolbar_:addTool(require("app.editor.PathTool").new(self.toolbar_, self.map_))
-    -- -- self.toolbar_:addTool(require("app.editor.RangeTool").new(self.toolbar_, self.map_))
+    self.toolbar_ = require("app.editor.Toolbar").new(self.map_)
+    self.toolbar_:addTool(require("app.editor.GeneralTool").new(self.toolbar_, self.map_))
+    -- self.toolbar_:addTool(require("app.editor.ObjectTool").new(self.toolbar_, self.map_))
+    -- self.toolbar_:addTool(require("app.editor.PathTool").new(self.toolbar_, self.map_))
+    -- self.toolbar_:addTool(require("app.editor.RangeTool").new(self.toolbar_, self.map_))
     -- cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
-    -- -- 创建工具栏的视图
-    -- self.toolbarView_ = self.toolbar_:createView(self.uiLayer_, "#ToolbarBg.png", EditorConstants.TOOLBAR_PADDING, self.editorUIScale, self.toolbarLines)
-    -- self.toolbarView_:setPosition(display.left, display.bottom)
-    -- dump(self.toolbar_ )
+    -- 创建工具栏的视图
+    self.toolbarView_ = self.toolbar_:createView(self.uiLayer_, "ToolbarBg.png", EditorConstants.TOOLBAR_PADDING, self.editorUIScale, self.toolbarLines)
+    self.toolbarView_:setPosition(display.left, display.bottom)
+    dump(self.toolbar_ )
     -- self.toolbar_:setDefaultTouchTool("GeneralTool")
     -- self.toolbar_:selectButton("GeneralTool", 1)
 

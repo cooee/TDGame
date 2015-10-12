@@ -84,6 +84,88 @@ function UICreator:createNode(x,y,w,h)
     end
 end
 
+function UICreator:createCheckBox(file)
+    local btn = ccui.CheckBox:create()
+    btn:ignoreContentAdaptWithSize(true)
+    if type(file) == "table" then
+        dump(file)
+        local name = file.name;
+        if name then
+            btn:setName(name);
+        end
+        local normal = file.normal;
+        local pressed = file.pressed;
+        local disabled = file.disabled;
+        if normal then
+            local source = normal;
+            local isCache = 0;
+            if string.byte(source) == 35 then
+                source = string.sub(source, 2);
+                isCache = 1;
+            else
+                isCache = 0;
+            end
+            btn:loadTextureBackGround(source,isCache);
+        end
+        if pressed then
+            local source = pressed;
+            local isCache = 0;
+            if string.byte(source) == 35 then
+                source = string.sub(source, 2);
+                isCache = 1;
+            else
+                isCache = 0;
+            end
+            btn:loadTextureBackGroundSelected(source,isCache);
+        end
+        if disabled then
+            local source = disabled;
+            local isCache = 0;
+            if string.byte(source) == 35 then
+                source = string.sub(source, 2);
+                isCache = 1;
+            else
+                isCache = 0;
+            end
+            btn:loadTextureBackGroundDisabled(source,isCache);
+        end
+
+    elseif type(file) == "string" then
+        btn:loadTextureBackGround(file,0);
+        btn:setName(file);
+    end
+
+    btn:setCascadeColorEnabled(true)
+    btn:setCascadeOpacityEnabled(true)
+    return btn;
+end
+
+        -- local sourceType = type(source)
+        -- if sourceType == "string" then
+        --     if string.byte(source) == 35 then -- first char is #
+        --         -- create sprite from spriteFrame
+        --         if not scale9 then
+        --             sprite = spriteClass:createWithSpriteFrameName(string.sub(source, 2))
+        --         else
+        --             sprite = spriteClass:createWithSpriteFrameName(string.sub(source, 2), params.capInsets)
+        --         end
+        --         break
+        --     end
+
+-- local CheckBox_1 = ccui.CheckBox:create()
+-- CheckBox_1:ignoreContentAdaptWithSize(false)
+-- CheckBox_1:loadTextureBackGround("Default/CheckBox_Normal.png",0)
+-- CheckBox_1:loadTextureBackGroundSelected("Default/CheckBox_Press.png",0)
+-- CheckBox_1:loadTextureBackGroundDisabled("Default/CheckBox_Disable.png",0)
+-- CheckBox_1:loadTextureFrontCross("Default/CheckBoxNode_Normal.png",0)
+-- CheckBox_1:loadTextureFrontCrossDisabled("Default/CheckBoxNode_Disable.png",0)
+-- CheckBox_1:setSelected(true)
+-- CheckBox_1:setLayoutComponentEnabled(true)
+-- CheckBox_1:setName("CheckBox_1")
+-- CheckBox_1:setTag(13)
+-- CheckBox_1:setCascadeColorEnabled(true)
+-- CheckBox_1:setCascadeOpacityEnabled(true)
+
 
 
 

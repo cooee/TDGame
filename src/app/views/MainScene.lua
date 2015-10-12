@@ -30,7 +30,7 @@ function MainScene:createResoueceNode2(resourceFilename)
 
     -- local dragMap = ccui.Button:create()
     -- dragMap:ignoreContentAdaptWithSize(true)
-    cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
+    
     -- dragMap:loadTextureNormal("DragMapButton.png",1)
     -- -- dragMap:loadTexturePressed("DragMapButtonSelected.png",1)
     -- dragMap:setScale9Enabled(true)
@@ -48,14 +48,20 @@ function MainScene:createResoueceNode2(resourceFilename)
     -- btn:move(100,100);
     -- btn:addTo(self);
 
-    local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
+    -- local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
+    -- btn:move(100,100);
+    -- btn:addTo(self);
+  
+    -- -- local size = btn:getContentSize();
+    -- btn:setContentSize(64,64);
+    -- -- btn:setScale9Rect(5,5,5,5);
+
+    -- dump(size)
+    cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
+    local btn = g_UICreator:createCheckBox({normal = "#DragMapButton.png",pressed = "#DragMapButtonSelected.png"});
     btn:move(100,100);
     btn:addTo(self);
-  
-    -- local size = btn:getContentSize();
-    btn:setContentSize(64,64);
-    -- btn:setScale9Rect(5,5,5,5);
-
+    -- btn:setContentSize(64,64);
     dump(size)
 
 
