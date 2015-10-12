@@ -32,7 +32,7 @@ function XToast:showMsg(msg,pos)
         CCScaleTo:create(0.1, 1.2),
         CCScaleTo:create(0.1, 1.0),
         CCCallFunc:create(function()
-            test:removeFromParent();
+            test:removeSelf();
     end)}));
 end
 

@@ -29,16 +29,6 @@ end
 -- dragMap:setCascadeColorEnabled(true)
 -- dragMap:setCascadeOpacityEnabled(true)
 -- dragMap:setPosition(48.0000, 48.0000)
-local Button = ccui.Button
-
-function Button:setScaleRect(left,top,right,bottom)
-    self:setScale9Enabled(true)
-    local size = self:getVirtualRendererSize()
-    dump(size)
-    local w,h = size.width,size.height;
-    self:setCapInsets(cc.rect(left,top,w-left-right,h-top-bottom))
-end
-
 function UICreator:createButton(file)
     local btn = ccui.Button:create()
     btn:ignoreContentAdaptWithSize(true)
@@ -73,5 +63,16 @@ function UICreator:createButton(file)
     end
     return btn;
 end
+
+-- layout_bg:ignoreContentAdaptWithSize(false)
+-- cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
+-- layout_bg:loadTexture("ToolbarBg.png",1)
+-- layout_bg:setScale9Enabled(true)
+-- layout_bg:setCapInsets(cc.rect(5,5,6,38))
+-- layout_bg:setLayoutComponentEnabled(true)
+-- layout_bg:setName("layout_bg")
+-- layout_bg:setTag(12)
+-- layout_bg:setCascadeColorEnabled(true)
+-- layout_bg:setCascadeOpacityEnabled(true)
 
 return UICreator;
