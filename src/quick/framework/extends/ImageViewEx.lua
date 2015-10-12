@@ -6,6 +6,7 @@
 local ImageView = ccui.ImageView
 
 function ImageView:setScale9Rect(left,top,right,bottom)
+	dump(left);
     self:setScale9Enabled(true)
     local size = self:getVirtualRendererSize()
     dump(size)

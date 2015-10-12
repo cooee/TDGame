@@ -28,8 +28,6 @@ CC_DESIGN_RESOLUTION = {
             CONFIG_SCREEN_AUTOSCALE = "FIXED_HEIGHT"
         end
         local ratio = framesize.width / framesize.height
-        print("11111111111111111111111111111111111111111111111")
-        print("ratio " ..ratio)
         if ratio <= 1.34 then
             -- iPad 768*1024(1536*2048) is 4:3 screen
             return {autoscale = "SHOW_ALL"}

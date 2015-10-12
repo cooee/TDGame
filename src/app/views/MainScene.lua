@@ -48,14 +48,13 @@ function MainScene:createResoueceNode2(resourceFilename)
     -- btn:move(100,100);
     -- btn:addTo(self);
 
-    local btn = g_UICreator:createButton({normal = "DragMapButton.png"
-        ,pressed="DragMapButtonSelected.png"});
+    local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
     btn:move(100,100);
     btn:addTo(self);
   
-    local size = btn:getContentSize();
+    -- local size = btn:getContentSize();
     btn:setContentSize(64,64);
-    btn:setScaleRect(5,5,5,5);
+    -- btn:setScale9Rect(5,5,5,5);
 
     dump(size)
 

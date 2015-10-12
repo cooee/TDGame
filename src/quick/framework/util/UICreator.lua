@@ -14,21 +14,6 @@ function UICreator:show()
     print("UICreator:ctor")
 end
 
-
--- dragMap:loadTextureNormal("DragMapButton.png",1)
--- cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
--- dragMap:loadTexturePressed("DragMapButtonSelected.png",1)
--- dragMap:loadTextureDisabled("Default/Button_Disable.png",0)
--- dragMap:setTitleFontSize(14)
--- dragMap:setTitleColor(cc.c3b(65, 65, 70))
--- dragMap:setScale9Enabled(true)
--- dragMap:setCapInsets(cc.rect(5,5,30,30))
--- dragMap:setLayoutComponentEnabled(true)
--- dragMap:setName("dragMap")
--- dragMap:setTag(28)
--- dragMap:setCascadeColorEnabled(true)
--- dragMap:setCascadeOpacityEnabled(true)
--- dragMap:setPosition(48.0000, 48.0000)
 function UICreator:createButton(file)
     local btn = ccui.Button:create()
     btn:ignoreContentAdaptWithSize(true)
@@ -58,21 +43,48 @@ function UICreator:createButton(file)
 
     btn:setCascadeColorEnabled(true)
     btn:setCascadeOpacityEnabled(true)
-    if x then
-        btn:move(x, y)
-    end
     return btn;
 end
 
--- layout_bg:ignoreContentAdaptWithSize(false)
--- cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
--- layout_bg:loadTexture("ToolbarBg.png",1)
--- layout_bg:setScale9Enabled(true)
--- layout_bg:setCapInsets(cc.rect(5,5,6,38))
--- layout_bg:setLayoutComponentEnabled(true)
--- layout_bg:setName("layout_bg")
--- layout_bg:setTag(12)
--- layout_bg:setCascadeColorEnabled(true)
--- layout_bg:setCascadeOpacityEnabled(true)
+
+function UICreator:createImage(file)
+    local img = ccui.ImageView:create()
+    img:ignoreContentAdaptWithSize(true)
+    if type(file) == "table" then
+
+        local name = file.name;
+        if name then
+            img:setName(name);
+        end
+        if file.file then
+           img:loadTexture(file.file,1);
+        end
+        dump(file)
+        if file.scale9Rect then
+            dump(file.scale9Rect)
+            img:setScale9Rect(unpack(file.scale9Rect));
+        end
+    elseif type(file) == "string" then
+        img:loadTexture(file,1);
+        img:setName(file);
+    end
+    img:setCascadeColorEnabled(true)
+    img:setCascadeOpacityEnabled(true)
+    return img;
+end
+
+
+function UICreator:createNode(x,y,w,h)
+    local node = cc.Node:create()
+    if x then
+        node:move(x,y);
+    end
+    if w and h then
+        node:setContentSize(w,h)
+    end
+end
+
+
+
 
 return UICreator;
