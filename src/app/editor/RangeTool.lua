@@ -1,4 +1,4 @@
-
+-- 
 local ToolBase = require("editor.ToolBase")
 local RangeTool = class("RangeTool", ToolBase)
 

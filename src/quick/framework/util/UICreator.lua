@@ -1,7 +1,21 @@
 
 local UICreator = class("UICreator");
+
+
+local checkFile = function(file)
+    local source = file;
+    local isCache = 0;
+    if source then
+        if string.byte(source) == 35 then
+            source = string.sub(source, 2);
+            isCache = 1;
+        end
+    end
+    return source,isCache;
+end
+
 function UICreator:ctor()
-	print("UICreator:ctor")
+    print("UICreator:ctor")
     self.mTag = 0x1000;
 end
 
@@ -22,22 +36,21 @@ function UICreator:createButton(file)
         if name then
             btn:setName(name);
         end
-        local normal = file.normal;
-        local pressed = file.pressed;
-        local disabled = file.disabled;
+        local normal,isCache = checkFile(file.normal);
         if normal then
-            btn:loadTextureNormal(normal,1);
+            btn:loadTextureNormal(normal,isCache);
         end
+        local pressed,isCache = checkFile(file.pressed);
         if pressed then
-            btn:loadTexturePressed(pressed,1);
+            btn:loadTexturePressed(pressed,isCache);
         end
+        local disabled,isCache = checkFile(file.disabled);
         if disabled then
-            btn:loadTextureDisabled(disabled,1);
+            btn:loadTextureDisabled(disabled,isCache);
         end
-
-
     elseif type(file) == "string" then
-        btn:loadTextureNormal(file,1);
+        local source,isCache = checkFile(file)
+        btn:loadTextureNormal(source,isCache);
         btn:setName(file);
     end
 
@@ -51,21 +64,20 @@ function UICreator:createImage(file)
     local img = ccui.ImageView:create()
     img:ignoreContentAdaptWithSize(true)
     if type(file) == "table" then
-
         local name = file.name;
         if name then
             img:setName(name);
         end
         if file.file then
-           img:loadTexture(file.file,1);
+            local source,isCache = checkFile(file.file)
+            img:loadTexture(source,isCache);
         end
-        dump(file)
         if file.scale9Rect then
-            dump(file.scale9Rect)
             img:setScale9Rect(unpack(file.scale9Rect));
         end
-    elseif type(file) == "string" then
-        img:loadTexture(file,1);
+    elseif type(file) == "string" then  
+        local source,isCache = checkFile(file)
+        img:loadTexture(source,isCache);
         img:setName(file);
     end
     img:setCascadeColorEnabled(true)
@@ -93,79 +105,65 @@ function UICreator:createCheckBox(file)
         if name then
             btn:setName(name);
         end
-        local normal = file.normal;
-        local pressed = file.pressed;
-        local disabled = file.disabled;
-        if normal then
-            local source = normal;
-            local isCache = 0;
-            if string.byte(source) == 35 then
-                source = string.sub(source, 2);
-                isCache = 1;
-            else
-                isCache = 0;
-            end
-            btn:loadTextureBackGround(source,isCache);
+        local on,isCache = checkFile(file.on);
+        if on then
+            btn:loadTextureBackGround(on,isCache);
         end
-        if pressed then
-            local source = pressed;
-            local isCache = 0;
-            if string.byte(source) == 35 then
-                source = string.sub(source, 2);
-                isCache = 1;
-            else
-                isCache = 0;
-            end
-            btn:loadTextureBackGroundSelected(source,isCache);
+        local off,isCache = checkFile(file.off);
+        if off then
+            btn:loadTextureBackGroundSelected(off,isCache);
         end
+
+        local cross,isCache = checkFile(file.cross);
+        if cross then
+            btn:loadTextureFrontCross(cross,isCache);
+        end
+
+        local crossDisabled,isCache = checkFile(file.crossDisabled);
+        if crossDisabled then
+            btn:loadTextureFrontCrossDisabled(cross,isCache);
+        end
+
+        local disabled,isCache = checkFile(file.disabled);
         if disabled then
-            local source = disabled;
-            local isCache = 0;
-            if string.byte(source) == 35 then
-                source = string.sub(source, 2);
-                isCache = 1;
-            else
-                isCache = 0;
-            end
-            btn:loadTextureBackGroundDisabled(source,isCache);
+            btn:loadTextureBackGroundDisabled(disabled,isCache);
         end
 
     elseif type(file) == "string" then
-        btn:loadTextureBackGround(file,0);
+        local source,isCache = checkFile(file)
+        btn:loadTextureBackGround(source,isCache);
         btn:setName(file);
     end
-
     btn:setCascadeColorEnabled(true)
     btn:setCascadeOpacityEnabled(true)
     return btn;
 end
 
-        -- local sourceType = type(source)
-        -- if sourceType == "string" then
-        --     if string.byte(source) == 35 then -- first char is #
-        --         -- create sprite from spriteFrame
-        --         if not scale9 then
-        --             sprite = spriteClass:createWithSpriteFrameName(string.sub(source, 2))
-        --         else
-        --             sprite = spriteClass:createWithSpriteFrameName(string.sub(source, 2), params.capInsets)
-        --         end
-        --         break
-        --     end
 
--- local CheckBox_1 = ccui.CheckBox:create()
--- CheckBox_1:ignoreContentAdaptWithSize(false)
--- CheckBox_1:loadTextureBackGround("Default/CheckBox_Normal.png",0)
--- CheckBox_1:loadTextureBackGroundSelected("Default/CheckBox_Press.png",0)
--- CheckBox_1:loadTextureBackGroundDisabled("Default/CheckBox_Disable.png",0)
--- CheckBox_1:loadTextureFrontCross("Default/CheckBoxNode_Normal.png",0)
--- CheckBox_1:loadTextureFrontCrossDisabled("Default/CheckBoxNode_Disable.png",0)
--- CheckBox_1:setSelected(true)
--- CheckBox_1:setLayoutComponentEnabled(true)
--- CheckBox_1:setName("CheckBox_1")
--- CheckBox_1:setTag(13)
--- CheckBox_1:setCascadeColorEnabled(true)
--- CheckBox_1:setCascadeOpacityEnabled(true)
+function UICreator:createLabelTTF(str)
+    local label = nil;
+    
 
+    if type(str) == "table" then
+        local params = str;
+        local text       = tostring(params.text)
+        local font       = params.font or display.DEFAULT_TTF_FONT
+        local size       = params.size or display.DEFAULT_TTF_FONT_SIZE
+        local color      = params.color or display.COLOR_WHITE
+        local textAlign  = params.align or ui.TEXT_ALIGN_LEFT
+        local textValign = params.valign or ui.TEXT_VALIGN_CENTER
+        local x, y       = params.x, params.y
+        local dimensions = params.dimensions
+
+        -- static LabelTTF * create(const std::string& string, const std::string& fontName, float fontSize,
+        --                      const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
+        --                      TextVAlignment vAlignment = TextVAlignment::TOP);
+    else
+        label = cc.LabelTTF:create()
+        label:setString(str);
+    end
+    return label;
+end
 
 
 

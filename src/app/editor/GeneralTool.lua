@@ -8,28 +8,28 @@ function GeneralTool:ctor(toolbar, map)
     self.buttons = {
         {
             name          = "DragMap",
-            image         = "DragMapButton.png",
-            imageSelected = "DragMapButtonSelected.png",
+            image         = "#DragMapButton.png",
+            imageSelected = "#DragMapButtonSelected.png",
         },
         {
             name          = "SaveMap",
-            image         = "SaveMapButton.png",
-            imageSelected = "SaveMapButtonSelected.png",
+            image         = "#SaveMapButton.png",
+            imageSelected = "#SaveMapButtonSelected.png",
         },
         {
             name          = "ToggleDebug",
-            image         = "ToggleDebugButton.png",
-            imageSelected = "ToggleDebugButtonSelected.png",
+            image         = "#ToggleDebugButton.png",
+            imageSelected = "#ToggleDebugButtonSelected.png",
         },
         {
             name          = "ToggleBackground",
-            image         = "ToggleBackgroundButton.png",
-            imageSelected = "ToggleBackgroundButtonSelected.png",
+            image         = "#ToggleBackgroundButton.png",
+            imageSelected = "#ToggleBackgroundButtonSelected.png",
         },
         {
             name          = "PlayMap",
-            image         = "PlayMapButton.png",
-            imageSelected = "PlayMapButtonSelected.png",
+            image         = "#PlayMapButton.png",
+            imageSelected = "#PlayMapButtonSelected.png",
         },
     }
 
@@ -44,9 +44,10 @@ end
 function GeneralTool:selected(selectedButtonName)
     if selectedButtonName == "SaveMap" then
         self.toolbar_:selectButton("GeneralTool", 1)
-        if self.map_:dumpToFile() then
-            self.toolbar_:showNotice("Save Map OK")
-        end
+        -- if self.map_:dumpToFile() then
+        --     self.toolbar_:showNotice("Save Map OK")
+        -- end
+        self.toolbar_:showNotice("Save Map OK")
 
     elseif selectedButtonName == "ToggleDebug" then
         local debugLayer = self.map_:getDebugLayer()
