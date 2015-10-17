@@ -111,10 +111,10 @@ function Path:dump(label)
     local points = {}
     local len = 0
     for i, p in ipairs(state.points) do
-        local pair = string.format("{%s, %s}", _v(math.round(p[1]), 4), _v(math.round(p[2]), 4))
+        local pair = string.format("{x = %s, y = %s}", _v(math.round(p.x), 1), _v(math.round(p.y), 1))
         points[#points + 1] = pair
         len = len + string.len(pair)
-        if len >= 70 then
+        if len >= 30 then
             lines[#lines + 1] = "        " .. table.concat(points, ", ") .. ","
             points = {}
             len = 0
@@ -123,10 +123,13 @@ function Path:dump(label)
     if #points > 0 then
         lines[#lines + 1] = "        " .. table.concat(points, ", ") .. ","
     end
-    lines[#lines + 1] = "     }"
+    lines[#lines + 1] = "    }"
     lines[#lines + 1] = "}"
+    local ret = table.concat(lines, "\n");
 
-    return table.concat(lines, "\n")
+    print(ret);
+
+    return ret
 end
 
 return Path

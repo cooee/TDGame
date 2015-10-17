@@ -109,74 +109,9 @@ function display.newPolygon(points, scale)
     -- dump(vertices)
     -- dump(points)
 	local draw = cc.DrawNode:create()
-    draw:drawPoly(points, #points, false, cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))  
+    local color = cc.c4f(1, 1,0, 1);
+    dump(color)
+    draw:drawPoly(points, #points, false, color) 
+    -- draw:setLineWidth(2)
 	return draw
-end
-
-function display.newTTFLabelWithOutline(params)
-    assert(type(params) == "table",
-           "[framework.ui] newTTFLabelWithShadow() invalid params")
-
-    local color        = params.color or display.COLOR_WHITE
-    local outlineColor = params.outlineColor or display.COLOR_BLACK
-    local x, y         = params.x, params.y
-
-    local g = display.newNode()
-    params.size  = params.size
-    params.color = outlineColor
-    params.x, params.y = 0, 0
-    g.shadow1 = ui.newTTFLabel(params)
-    g.shadow1:realign(1, 0)
-    g:addChild(g.shadow1)
-    g.shadow2 = ui.newTTFLabel(params)
-    g.shadow2:realign(-1, 0)
-    g:addChild(g.shadow2)
-    g.shadow3 = ui.newTTFLabel(params)
-    g.shadow3:realign(0, -1)
-    g:addChild(g.shadow3)
-    g.shadow4 = ui.newTTFLabel(params)
-    g.shadow4:realign(0, 1)
-    g:addChild(g.shadow4)
-
-    params.color = color
-    g.label = ui.newTTFLabel(params)
-    g.label:realign(0, 0)
-    g:addChild(g.label)
-
-    function g:setString(text)
-        g.shadow1:setString(text)
-        g.shadow2:setString(text)
-        g.shadow3:setString(text)
-        g.shadow4:setString(text)
-        g.label:setString(text)
-    end
-
-    function g:getContentSize()
-        return g.label:getContentSize()
-    end
-
-    function g:setColor(...)
-        g.label:setColor(...)
-    end
-
-    function g:setOutlineColor(...)
-        g.shadow1:setColor(...)
-        g.shadow2:setColor(...)
-        g.shadow3:setColor(...)
-        g.shadow4:setColor(...)
-    end
-
-    function g:setOpacity(opacity)
-        g.label:setOpacity(opacity)
-        g.shadow1:setOpacity(opacity)
-        g.shadow2:setOpacity(opacity)
-        g.shadow3:setOpacity(opacity)
-        g.shadow4:setOpacity(opacity)
-    end
-
-    if x and y then
-        g:setPosition(x, y)
-    end
-
-    return g
 end

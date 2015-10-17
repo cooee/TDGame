@@ -4,16 +4,19 @@
 local map = {}
 
 map.size = {width = 960, height = 640}
-map.imageName = "MapA0001Bg.png"
+map.imageName = "Map/level1-A0001.tmx"
 
 local objects = {}
 
 local object = {
     points = {
-        {x=400,  y=400}, {x=520,  y=520},
-     }
+        {x = 510, y = 252}, {x = 459, y = 312},
+        {x = 546, y = 301},
+    }
 }
-objects["path:1"] = object
+objects["path:22"] = object
+
+----
 
 local object = {
     radius = 51,
@@ -22,8 +25,6 @@ local object = {
     y = 301,
 }
 objects["range:21"] = object
-
-
 
 ----
 

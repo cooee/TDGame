@@ -21,11 +21,11 @@ function GeneralTool:ctor(toolbar, map)
             image         = "#ToggleDebugButton.png",
             imageSelected = "#ToggleDebugButtonSelected.png",
         },
-        {
-            name          = "ToggleBackground",
-            image         = "#ToggleBackgroundButton.png",
-            imageSelected = "#ToggleBackgroundButtonSelected.png",
-        },
+        -- {
+        --     name          = "ToggleBackground",
+        --     image         = "#ToggleBackgroundButton.png",
+        --     imageSelected = "#ToggleBackgroundButtonSelected.png",
+        -- },
         {
             name          = "PlayMap",
             image         = "#PlayMapButton.png",
@@ -44,11 +44,9 @@ end
 function GeneralTool:selected(selectedButtonName)
     if selectedButtonName == "SaveMap" then
         self.toolbar_:selectButton("GeneralTool",1)
-        -- if self.map_:dumpToFile() then
-        --     self.toolbar_:showNotice("Save Map OK")
-        -- end
-        self.toolbar_:showNotice("Save Map OK")
-
+        if self.map_:dumpToFile() then
+            self.toolbar_:showNotice("Save Map OK")
+        end
     elseif selectedButtonName == "ToggleDebug" then
         local debugLayer = self.map_:getDebugLayer()
         debugLayer:setVisible(not debugLayer:isVisible())

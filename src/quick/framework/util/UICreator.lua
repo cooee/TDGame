@@ -168,7 +168,7 @@ end
 function UICreator:showMsg(text, fontsize, delay)
     local label = g_UICreator:createLabelTTF({
         text = text,
-        size = fontsize or 96,
+        size = fontsize or 48,
         color = ccc3(100, 255, 100),
         align = cc.TEXT_ALIGNMENT_CENTER,
     });

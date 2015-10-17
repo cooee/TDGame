@@ -45,13 +45,6 @@ function PathEditorBehavior:bind(object)
     object:bindMethod(self, "isViewCreated", isViewCreated)
 
     local function createView(object, batch, marksLayer, debugLayer)
-        -- object.idLabel_ = ui.newTTFLabel({
-        --     text  = object:getId(),
-        --     font  = EditorConstants.LABEL_FONT,
-        --     size  = EditorConstants.LABEL_FONT_SIZE,
-        --     align = ui.TEXT_ALIGN_CENTER,
-        -- })
-
         object.idLabel_ = g_UICreator:createLabelTTF({
             text = object:getId(),
             font  = EditorConstants.LABEL_FONT,
@@ -59,6 +52,8 @@ function PathEditorBehavior:bind(object)
             align = cc.TEXT_ALIGNMENT_CENTER,
         });
 
+        -- object.pathLayer = cc.Node:create()
+        -- debugLayer:addChild(object.pathLayer)
 
         debugLayer:addChild(object.idLabel_, EditorConstants.LABEL_ZORDER)
     end
@@ -74,6 +69,7 @@ function PathEditorBehavior:bind(object)
         for i, flag in ipairs(object.flagsSprite_) do
             flag:removeSelf()
         end
+
         object.flagsSprite_ = nil
     end
     object:bindMethod(self, "removeView", removeView, true)
@@ -84,11 +80,20 @@ function PathEditorBehavior:bind(object)
             object.polygon_ = nil
         end
 
+        if object.pathLayer then
+            object.pathLayer:removeSelf()
+            object.pathLayer = nil
+        end
+
+        -- object.pathLayer = cc.Node:create()
+        -- debugLayer:addChild(object.pathLayer)
+
+
         if #object.points_ < 1 then return end
         -- dump(object.points_)
         object.polygon_ = display.newPolygon(object.points_)
         object.debugLayer_:addChild(object.polygon_, EditorConstants.POLYGON_ZORDER)
-
+                 object.polygon_:setColor(cc.c3b(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
         if object.isSelected_ then
             object.idLabel_:setColor(cc.c3b(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
         else

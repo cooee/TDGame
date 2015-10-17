@@ -44,7 +44,7 @@ function Toolbar:onTouch(event, x, y)
 end
 
 function Toolbar:onButtonTap(selectedTool, selectedButton)
-    print("selectedTool:getName() " ..selectedTool:getName())
+    -- print("selectedTool:getName() " ..selectedTool:getName())
     for toolName, tool in pairs(self.tools_) do
         if tool ~= selectedTool then
             for i, buttonSprite in ipairs(tool.buttonsSprite) do

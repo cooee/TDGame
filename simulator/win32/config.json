@@ -3,8 +3,8 @@
        "isLandscape": true,
        "isWindowTop": false,
        "name": "TDGame",
-       "width": 1280,
-       "height": 720,
+       "width": 960,
+       "height": 640,
        "entry": "src/main.lua",
        "consolePort": 6050,
        "uploadPort": 6060
@@ -19,6 +19,11 @@
             "title": "iPhone 4 (960x640)",
             "width": 960,
             "height": 640
+        },
+        {
+            "title": "iPhone 4s (960x720)",
+            "width": 960,
+            "height": 720
         },
         {
             "title": "iPhone 5 (1136x640)",

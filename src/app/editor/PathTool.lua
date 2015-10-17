@@ -142,6 +142,11 @@ function PathTool:onTouchCreatePath(event, x, y)
 end
 
 function PathTool:onTouchAddPathPoint(event, x, y)
+    if self.currentPath_ == nil then
+        g_UICreator:showMsg("没有选择路径");
+        return;
+    end
+
     if event == "began" then
         local index = self.currentPath_:checkPointAtPoint(x, y, EditorConstants.CHECK_POINT_DIST)
         if index then

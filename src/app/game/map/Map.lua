@@ -45,7 +45,8 @@ function Map:init()
     self.height_            = self.data_.size.height
     self.imageName_         = self.data_.imageName
     if not self.imageName_ then
-        self.imageName_ = string.format("Map%sBg.png", self.id_)
+
+        self.imageName_ = string.format("Map/level1-%s.tmx", self.id_)
     end
 
     self.bgSprite_          = nil
@@ -87,7 +88,7 @@ function Map:init()
 
     -- 计算地图位移限定值
     self.camera_ = MapCamera.new(self)
-    self.camera_:resetOffsetLimit()
+    self.camera_:resetOffsetLimit(true)
 
     -- 地图已经准备好
     self.ready_ = true
@@ -361,44 +362,25 @@ end
 function Map:createView(parent)
     assert(self.batch_ == nil, "Map:createView() - view already created")
 
-    CCTexture2D:setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGB565)
-    -- self.bgSprite_ = display.newSprite(self.imageName_)
-    CCTexture2D:setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888)
-
-    -- self.bgSprite_:addNodeEventListener(cc.NODE_EVENT, function(event)
-    --     -- 地图对象删除时，自动从缓存里卸载地图材质
-    --     if event.name == "exit" then
-    --         display.removeSpriteFrameByImageName(self.imageName_)
-    --     end
-    -- end)
-
     -- self.bgSprite_:align(display.LEFT_BOTTOM, 0, 0)
     -- parent:addChild(self.bgSprite_)
 
+    local mapLayer = cc.Node:create()
+    parent:addChild(mapLayer)
     local  map = CCTMXTiledMap:create("Map/level1-1.tmx")
-    parent:addChild(map, 0, 100)
-
+    mapLayer:addChild(map, 0, 100)
+    
     local layer = map:layerNamed("Towerface"); 
     layer:setVisible(false);
     local Group = map:objectGroupNamed("Objects");
     local obj = Group:objectNamed("WayPoint00");
-
-
     layer = map:layerNamed("Meta"); 
-    layer:setVisible(false);
-
+    layer:setVisible(true);
     self.meta_ = layer;
-    -- CCSprite* tileAt(CCPoint tileCoordinate);
-    -- local sprite = self.meta_:tileAt(ccp(2,4));
-    -- sprite:setVisible(false);
-    -- local pos= self.meta_:positionAt(ccp(2,4));
-    -- local x2,y2 = sprite:getPosition();
-    -- print("x=%d  y=%d", pos.x,pos.y)
-    -- print("x2=%d  y2=%d", x2,y2)
 
-    
 
-    self.bgSprite_ = map;
+
+    self.bgSprite_ = mapLayer;
 
     -- self.batch_ = display.newBatchNode("SheetMapBattle.png", 1000)
     self.batch_ = display.newNode();
@@ -587,8 +569,10 @@ function Map:dump()
     table.sort(allid)
     lines[#lines + 1] = "local objects = {}"
     for i, id in ipairs(allid) do
+        local obj = self.objects_[id];
+        dump(obj)
         lines[#lines + 1] = ""
-        lines[#lines + 1] = self.objects_[id]:dump("local object")
+        lines[#lines + 1] = obj:dump("local object")
         lines[#lines + 1] = string.format("objects[\"%s\"] = object", id)
         lines[#lines + 1] = ""
         lines[#lines + 1] = "----"

@@ -14,6 +14,11 @@ end)
 
 
 function EditorScene:ctor()
+
+    if CC_SHOW_FPS then
+        cc.Director:getInstance():setDisplayStats(true)
+    end
+
     -- 根据设备类型确定工具栏的缩放比例
     self.toolbarLines = 1
     self.editorUIScale = 1
