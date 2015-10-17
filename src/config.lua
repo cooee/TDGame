@@ -37,3 +37,7 @@ CC_DESIGN_RESOLUTION = {
         end
     end
 }
+
+-- eval $(ssh-agent -s)
+-- ssh-add myc_key
+

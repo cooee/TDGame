@@ -8,28 +8,28 @@ function GeneralTool:ctor(toolbar, map)
     self.buttons = {
         {
             name          = "DragMap",
-            image         = "DragMapButton.png",
-            imageSelected = "DragMapButtonSelected.png",
+            image         = "#DragMapButton.png",
+            imageSelected = "#DragMapButtonSelected.png",
         },
         {
             name          = "SaveMap",
-            image         = "SaveMapButton.png",
-            imageSelected = "SaveMapButtonSelected.png",
+            image         = "#SaveMapButton.png",
+            imageSelected = "#SaveMapButtonSelected.png",
         },
         {
             name          = "ToggleDebug",
-            image         = "ToggleDebugButton.png",
-            imageSelected = "ToggleDebugButtonSelected.png",
+            image         = "#ToggleDebugButton.png",
+            imageSelected = "#ToggleDebugButtonSelected.png",
         },
         {
             name          = "ToggleBackground",
-            image         = "ToggleBackgroundButton.png",
-            imageSelected = "ToggleBackgroundButtonSelected.png",
+            image         = "#ToggleBackgroundButton.png",
+            imageSelected = "#ToggleBackgroundButtonSelected.png",
         },
         {
             name          = "PlayMap",
-            image         = "PlayMapButton.png",
-            imageSelected = "PlayMapButtonSelected.png",
+            image         = "#PlayMapButton.png",
+            imageSelected = "#PlayMapButtonSelected.png",
         },
     }
 

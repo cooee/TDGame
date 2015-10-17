@@ -16,12 +16,12 @@ require "cocos.init"
 local function main()
 
 	require "quick._load"
-    require("app.MyApp"):create():run()
+ 	-- require("app.MyApp"):create():run()
 
-    -- local EditorScene = require("app.editor.EditorScene");
-    -- local scene = EditorScene.new();
-    -- dump(scene);
-    -- display.runScene(scene, transition, time, more)
+    local EditorScene = require("app.editor.EditorScene");
+    local scene = EditorScene.new();
+    dump(scene);
+    display.runScene(scene, transition, time, more)
 
 end
 
