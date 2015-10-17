@@ -28,5 +28,14 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="editor_layout.csd" />
+          <FilePathData Path="MainScene_layout.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="editor_layout.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

@@ -31,8 +31,8 @@ function EditorScene:ctor()
 
     -- self.gameCtr = GameCtr.new();
 
-    -- local bg = display.newTilesSprite("EditorBg.png")
-    -- self:addChild(bg)
+    local bg = display.newTilesSprite("EditorBg.png")
+    self:addChild(bg)
 
     -- mapLayer 包含地图的整个视图
     self.mapLayer_ = display.newNode()
@@ -52,8 +52,8 @@ function EditorScene:ctor()
 
     -- 创建地图对象
     self.map_ = require("app.game.map.Map").new(LEVEL_ID, true) -- 参数：地图ID, 是否是编辑器模式
-    -- self.map_:init()
-    -- self.map_:createView(self.mapLayer_)
+    self.map_:init()
+    self.map_:createView(self.mapLayer_)
 
     -- self.mapCtr = MapCtr.new();
     -- self.mapCtr:setMap(self.map_);
@@ -240,10 +240,12 @@ function EditorScene:editMap()
 end
 
 function EditorScene:tick(dt)
+    -- dump(dt)
     if self.mapRuntime_ then
-        for i=1,1 do
-            self.mapRuntime_:tick(dt)
-        end
+        -- for i=1,1 do
+        --     self.mapRuntime_:tick(dt)
+        -- end
+        self.mapRuntime_:tick(dt)
         
     end
 end
@@ -295,12 +297,12 @@ function EditorScene:onTouch(event, x, y)
 end
 
 function EditorScene:onEnter()
-    self.touchLayer_:addEventListener(cc.NODE_TOUCH_EVENT, function(event)
+    self.touchLayer_:onTouch(function(event)
         return self:onTouch(event.name, event.x, event.y)
     end)
-    self.touchLayer_:setTouchEnabled(true)
-    self:addNodeEventListener(cc.NODE_ENTER_FRAME_EVENT, handler(self, self.tick))
-    self:scheduleUpdate()
+    -- self.touchLayer_:setTouchEnabled(true)
+    -- self:addNodeEventListener(cc.NODE_ENTER_FRAME_EVENT, handler(self, self.tick))
+    self:scheduleUpdate(handler(self, self.tick))
 end
 
 function EditorScene:onExit()

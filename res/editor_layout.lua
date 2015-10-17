@@ -53,6 +53,9 @@ layout_bg:setCascadeColorEnabled(true)
 layout_bg:setCascadeOpacityEnabled(true)
 layout_bg:setAnchorPoint(0.0000, 0.5000)
 layout_bg:setPosition(0.0000, 48.0000)
+if callBackProvider~=nil then
+      layout_bg:addTouchEventListener(callBackProvider("editor_layout.lua", layout_bg, "CV"))
+end
 layout = ccui.LayoutComponent:bindLayoutComponent(layout_bg)
 layout:setPositionPercentX(0.0000)
 layout:setPositionPercentY(0.0667)
