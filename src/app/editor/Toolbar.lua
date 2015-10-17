@@ -74,7 +74,7 @@ end
 
 function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
     if self.mView then return end
-    scale = 1.5;
+    scale = 1.2;
 
     self.mView = display.newNode()
     local bg = g_UICreator:createImage(bgImageName);

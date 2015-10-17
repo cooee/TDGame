@@ -87,18 +87,12 @@ function PathEditorBehavior:bind(object)
         if #object.points_ < 1 then return end
         -- dump(object.points_)
         object.polygon_ = display.newPolygon(object.points_)
-        -- object.polygon_:setLineStipple(checknumber("0101010101010101", 2))
-        -- object.polygon_:setLineStippleEnabled(true)
         object.debugLayer_:addChild(object.polygon_, EditorConstants.POLYGON_ZORDER)
 
         if object.isSelected_ then
-            -- object.polygon_:setLineColor(ccc4FFromccc4B(ccc4(unpack(PathEditorBehavior.SELECTED_COLOR))))
-            object.idLabel_:setColor(ccc3(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
-            -- object.polygon_:setLineStippleEnabled(false)
+            object.idLabel_:setColor(cc.c3b(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
         else
-            -- object.polygon_:setLineColor(ccc4FFromccc4B(ccc4(unpack(PathEditorBehavior.UNSELECTED_COLOR))))
-            object.idLabel_:setColor(ccc3(unpack(EditorConstants.UNSELECTED_LABEL_COLOR)))
-            -- object.polygon_:setLineStippleEnabled(true)
+            object.idLabel_:setColor(cc.c3b(unpack(EditorConstants.UNSELECTED_LABEL_COLOR)))
         end
 
         local scale = object.debugLayer_:getScale()

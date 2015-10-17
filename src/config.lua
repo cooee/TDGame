@@ -11,8 +11,8 @@ CC_SHOW_FPS = true
 -- disable create unexpected global variable
 CC_DISABLE_GLOBAL = true
 
-local DESIGN_SCREEN_WIDTH = 1280;
-local DESIGN_SCREEN_HEIGHT = 720;
+local DESIGN_SCREEN_WIDTH = 960;
+local DESIGN_SCREEN_HEIGHT = 640;
 
 -- for module display
 CC_DESIGN_RESOLUTION = {
