@@ -16,7 +16,7 @@ function Toolbar:ctor(map)
 
     self.currentToolName_    = nil
     self.currentButtonIndex_ = nil
-    self.sprite_             = nil
+    self.mView               = nil
 
     self.isDefaultTouch_     = false
 end
@@ -48,41 +48,43 @@ function Toolbar:onButtonTap(selectedTool, selectedButton)
     for toolName, tool in pairs(self.tools_) do
         if tool ~= selectedTool then
             for i, buttonSprite in ipairs(tool.buttonsSprite) do
-                buttonSprite:setButtonSelected(false)
+                buttonSprite:setSelected(false)
             end
         end
         for buttonIndex, button in ipairs(tool.buttons) do
             if button == selectedButton then
                 self.currentButtonIndex_ = buttonIndex
-            elseif button.sprite:isButtonEnabled() then
-                button.sprite:setButtonSelected(false)
+            elseif button.sprite:isSelected() then
+                button.sprite:setSelected(false)
             end
         end
     end
 
     self.currentToolName_ = selectedTool:getName()
-    selectedButton.sprite:setButtonSelected(true)
+    selectedButton.sprite:setSelected(true)
     selectedTool:selected(selectedButton.name)
 
-    self:dispatchEvent({
-        name       = "SELECT_TOOL",
-        toolName   = self.currentToolName_,
-        buttonName = selectedButton.name,
-    })
+    -- self:dispatchEvent({
+    --     name       = "SELECT_TOOL",
+    --     toolName   = self.currentToolName_,
+    --     buttonName = selectedButton.name,
+    -- })
+
 end
 
 function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
-    if self.sprite_ then return end
+    if self.mView then return end
+    scale = 1.5;
 
-    self.sprite_ = display.newNode()
+    self.mView = display.newNode()
     local bg = g_UICreator:createImage(bgImageName);
     bg:setContentSize(display.width,96);
     bg:setScale9Rect(5,5,5,5);
     bg:align(display.CENTER_BOTTOM, display.cx, 0)
-    self.toolbarHeight_ = bg:getContentSize().height * scale
-    self.sprite_:addChild(bg)
+    self.toolbarHeight_ = bg:getContentSize().height
+    self.mView:addChild(bg)
 
-    parent:addChild(self.sprite_)
+    parent:addChild(self.mView)
 
     local menu = display.newNode()
     local items = {}
@@ -98,23 +100,23 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
         for buttonIndex, button in ipairs(tool.buttons) do
             dump(button);
             button.sprite = g_UICreator:createCheckBox({
-                normal = button.image,
-                pressed = button.imageSelected,
+                on = button.image,
+                off = button.imageSelected,
+                cross = button.imageSelected,
             })
-
-
-            -- button.sprite:onButtonClicked(function() self:onButtonTap(tool, button) end)
+            button.sprite:addClickEventListener(function() self:onButtonTap(tool, button) end)
             button.sprite:setScale(scale)
+            button.sprite:setSelected(false)
             menu:addChild(button.sprite)
             tool.buttonsSprite[#tool.buttonsSprite + 1] = button.sprite
             items[#items + 1] = button.sprite
         end
     end
 
-    self.sprite_:addChild(menu)
+    self.mView:addChild(menu)
     AutoLayout.alignItemsHorizontally(items, padding * scale, self.toolbarHeight_ / 2, padding * scale, toolbarLines)
 
-    -- -- 放大缩小按钮
+    -- 放大缩小按钮
     -- local zoomInButton = ui.newImageMenuItem({
     --     image    = "#ZoomInButton.png",
     --     x        = display.right - 72 * scale,
@@ -130,8 +132,10 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
     --         end
     --     end
     -- })
-    -- zoomInButton:setScale(scale)
-
+    local zoomInButton = g_UICreator:createButton("#ZoomInButton.png");
+    zoomInButton:move(display.right - 72 * scale,self.toolbarHeight_ / 2)
+    zoomInButton:setScale(scale)
+    zoomInButton:addTo(self.mView)
     -- local zoomOutButton = ui.newImageMenuItem({
     --     image    = "#ZoomOutButton.png",
     --     x        = display.right - 28 * scale,
@@ -150,7 +154,7 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
     -- zoomOutButton:setScale(scale)
 
     -- local zoombar = ui.newMenu({zoomInButton, zoomOutButton})
-    -- self.sprite_:addChild(zoombar)
+    -- self.mView:addChild(zoombar)
 
     -- self.scaleLabel_ = ui.newTTFLabel({
     --     text  = "1.00",
@@ -161,21 +165,21 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
     --     x     = display.right - 96 * scale,
     --     y     = self.toolbarHeight_ / 2,
     -- })
-    -- self.sprite_:addChild(self.scaleLabel_)
+    -- self.mView:addChild(self.scaleLabel_)
 
  
 
-    -- self.sprite_:addNodeEventListener(cc.NODE_EVENT, function(event)
+    -- self.mView:addNodeEventListener(cc.NODE_EVENT, function(event)
     --     if event.name == "exit" then
     --         self:removeAllEventListeners()
     --     end
     -- end)
 
-    return self.sprite_
+    return self.mView
 end
 
 function Toolbar:getView()
-    return self.sprite_
+    return self.mView
 end
 
 function Toolbar:addTool(tool)
@@ -193,7 +197,7 @@ function Toolbar:setDefaultTouchTool(toolName)
 end
 
 function Toolbar:selectButton(toolName, buttonIndex)
-    assert(self.sprite_, "Toolbar sprites not created")
+    assert(self.mView, "Toolbar sprites not created")
     self:onButtonTap(self.tools_[toolName], self.tools_[toolName].buttons[buttonIndex])
 end
 
@@ -202,12 +206,20 @@ function Toolbar:getSelectedButtonName()
 end
 
 function Toolbar:showNotice(text, fontsize, delay)
-    local label = ui.newTTFLabel({
+    -- local label = ui.newTTFLabel({
+    --     text = "Save map ok",
+    --     size = fontsize or 96,
+    --     color = ccc3(100, 255, 100),
+    --     align = ui.TEXT_ALIGN_CENTER,
+    -- })
+    
+    local label = g_UICreator:createLabelTTF({
         text = "Save map ok",
         size = fontsize or 96,
         color = ccc3(100, 255, 100),
         align = ui.TEXT_ALIGN_CENTER,
-    })
+    });
+
 
     label:setPosition(display.cx, display.cy)
     self:getView():addChild(label)

@@ -1,10 +1,10 @@
 
-local StaticObjectsProperties = require("game.properties.StaticObjectsProperties")
-local StaticObject            = require("game.map.StaticObject")
-local MapConstants            = require("game.map.MapConstants")
-local EditorConstants         = require("editor.EditorConstants")
+-- local StaticObjectsProperties = require("game.properties.StaticObjectsProperties")
+-- local StaticObject            = require("game.map.StaticObject")
+-- local MapConstants            = require("game.map.MapConstants")
+-- local EditorConstants         = require("editor.EditorConstants")
 
-local ToolBase = require("editor.ToolBase")
+local ToolBase = import(".ToolBase")
 local ObjectTool = class("ObjectTool", ToolBase)
 
 ObjectTool.TOOLBOX_PADDING     = 98
@@ -45,9 +45,9 @@ function ObjectTool:ctor(toolbar, map)
         },
     }
 
-    self.toolbar_:addEventListener("UPDATE_OBJECT", function(event)
-        self:setMoreButtonsEnabled(true)
-    end)
+    -- self.toolbar_:addEventListener("UPDATE_OBJECT", function(event)
+    --     self:setMoreButtonsEnabled(true)
+    -- end)
 end
 
 function ObjectTool:selected(selectedButtonName)

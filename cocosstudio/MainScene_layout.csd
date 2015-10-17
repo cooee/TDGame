@@ -32,7 +32,7 @@
             <PreSize X="1.0000" Y="1.0000" />
             <FileData Type="Normal" Path="editor_layout.csd" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="CheckBox_1" ActionTag="-1520061410" Tag="13" IconVisible="False" LeftMargin="216.0000" RightMargin="1024.0000" TopMargin="153.0000" BottomMargin="527.0000" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="CheckBox_1" ActionTag="-1520061410" CallBackType="Click" CallBackName="onCheck" Tag="13" IconVisible="False" LeftMargin="216.0000" RightMargin="1024.0000" TopMargin="153.0000" BottomMargin="527.0000" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="40.0000" Y="40.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="236.0000" Y="547.0000" />
@@ -45,6 +45,31 @@
             <DisableBackFileData Type="Default" Path="Default/CheckBox_Disable.png" Plist="" />
             <NodeNormalFileData Type="Default" Path="Default/CheckBoxNode_Normal.png" Plist="" />
             <NodeDisableFileData Type="Default" Path="Default/CheckBoxNode_Disable.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="CheckBox_2" ActionTag="1460848392" Tag="32" IconVisible="False" LeftMargin="376.8995" RightMargin="863.1005" TopMargin="128.4080" BottomMargin="551.5920" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="40.0000" Y="40.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="396.8995" Y="571.5920" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3101" Y="0.7939" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <NormalBackFileData Type="Default" Path="Default/CheckBox_Normal.png" Plist="" />
+            <PressedBackFileData Type="Default" Path="Default/CheckBox_Press.png" Plist="" />
+            <DisableBackFileData Type="Default" Path="Default/CheckBox_Disable.png" Plist="" />
+            <NodeNormalFileData Type="Default" Path="Default/CheckBoxNode_Normal.png" Plist="" />
+            <NodeDisableFileData Type="Default" Path="Default/CheckBoxNode_Disable.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Text_1" ActionTag="851299545" Tag="42" IconVisible="False" LeftMargin="469.8995" RightMargin="710.1005" TopMargin="120.4080" BottomMargin="579.5920" FontSize="20" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="100.0000" Y="20.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="519.8995" Y="589.5920" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4062" Y="0.8189" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

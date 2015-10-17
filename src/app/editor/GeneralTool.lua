@@ -44,9 +44,10 @@ end
 function GeneralTool:selected(selectedButtonName)
     if selectedButtonName == "SaveMap" then
         self.toolbar_:selectButton("GeneralTool", 1)
-        if self.map_:dumpToFile() then
-            self.toolbar_:showNotice("Save Map OK")
-        end
+        -- if self.map_:dumpToFile() then
+        --     self.toolbar_:showNotice("Save Map OK")
+        -- end
+        self.toolbar_:showNotice("Save Map OK")
 
     elseif selectedButtonName == "ToggleDebug" then
         local debugLayer = self.map_:getDebugLayer()

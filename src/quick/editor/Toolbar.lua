@@ -64,11 +64,11 @@ function Toolbar:onButtonTap(selectedTool, selectedButton)
     selectedButton.sprite:setButtonSelected(true)
     selectedTool:selected(selectedButton.name)
 
-    self:dispatchEvent({
-        name       = "SELECT_TOOL",
-        toolName   = self.currentToolName_,
-        buttonName = selectedButton.name,
-    })
+    -- self:dispatchEvent({
+    --     name       = "SELECT_TOOL",
+    --     toolName   = self.currentToolName_,
+    --     buttonName = selectedButton.name,
+    -- })
 end
 
 function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
