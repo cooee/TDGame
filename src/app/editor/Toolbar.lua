@@ -5,7 +5,7 @@ local ToolBase   = import(".ToolBase")
 local Toolbar = class("Toolbar")
 
 function Toolbar:ctor(map)
-    -- cc(self):addComponent("components.behavior.EventProtocol"):exportMethods()
+  
 
     self.map_                = map
     self.tools_              = {}
@@ -206,18 +206,11 @@ function Toolbar:getSelectedButtonName()
 end
 
 function Toolbar:showNotice(text, fontsize, delay)
-    -- local label = ui.newTTFLabel({
-    --     text = "Save map ok",
-    --     size = fontsize or 96,
-    --     color = ccc3(100, 255, 100),
-    --     align = ui.TEXT_ALIGN_CENTER,
-    -- })
-    
     local label = g_UICreator:createLabelTTF({
         text = "Save map ok",
         size = fontsize or 96,
         color = ccc3(100, 255, 100),
-        align = ui.TEXT_ALIGN_CENTER,
+        align = cc.TEXT_ALIGNMENT_CENTER,
     });
 
 

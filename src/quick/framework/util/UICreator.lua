@@ -151,10 +151,10 @@ function UICreator:createLabelTTF(str)
         local size       = params.size or display.DEFAULT_TTF_FONT_SIZE
         local color      = params.color or display.COLOR_WHITE
         local textAlign  = params.align or ui.TEXT_ALIGN_LEFT
-        local textValign = params.valign or ui.TEXT_VALIGN_CENTER
+        -- local textValign = params.valign or ui.TEXT_VALIGN_CENTER
         local x, y       = params.x, params.y
-        local dimensions = params.dimensions
-
+        -- local dimensions = params.dimensions
+        label = cc.LabelTTF:create(text,font,size)
         -- static LabelTTF * create(const std::string& string, const std::string& fontName, float fontSize,
         --                      const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
         --                      TextVAlignment vAlignment = TextVAlignment::TOP);

@@ -35,13 +35,13 @@ function EditorScene:ctor()
     -- self:addChild(bg)
 
     -- mapLayer 包含地图的整个视图
-    -- self.mapLayer_ = display.newNode()
-    -- self.mapLayer_:align(display.LEFT_BOTTOM, 0, 0)
-    -- self:addChild(self.mapLayer_)
+    self.mapLayer_ = display.newNode()
+    self.mapLayer_:align(display.LEFT_BOTTOM, 0, 0)
+    self:addChild(self.mapLayer_)
 
     -- -- touchLayer 用于接收触摸事件
-    -- self.touchLayer_ = display.newLayer()
-    -- self:addChild(self.touchLayer_)
+    self.touchLayer_ = display.newLayer()
+    self:addChild(self.touchLayer_)
 
     -- uiLayer 用于显示编辑器的 UI（工具栏等）
     self.uiLayer_ = display.newNode()
@@ -50,8 +50,8 @@ function EditorScene:ctor()
 
 
 
-    -- -- 创建地图对象
-    -- self.map_ = require("game.map.Map").new(LEVEL_ID, true) -- 参数：地图ID, 是否是编辑器模式
+    -- 创建地图对象
+    self.map_ = require("app.game.map.Map").new(LEVEL_ID, true) -- 参数：地图ID, 是否是编辑器模式
     -- self.map_:init()
     -- self.map_:createView(self.mapLayer_)
 
@@ -147,7 +147,23 @@ function EditorScene:ctor()
 
 
     -- self:editMap()
+
+    self:addListener();
+
+    self:enableNodeEvents()
   
+end
+
+function EditorScene:addListener()
+
+    ---开始游戏
+    g_EventManager:addEventListener(Event.PLAY_MAP, function()
+   
+    end, self)
+end
+
+function EditorScene:removeListener()
+
 end
 
 
@@ -279,7 +295,7 @@ function EditorScene:onTouch(event, x, y)
 end
 
 function EditorScene:onEnter()
-    self.touchLayer_:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
+    self.touchLayer_:addEventListener(cc.NODE_TOUCH_EVENT, function(event)
         return self:onTouch(event.name, event.x, event.y)
     end)
     self.touchLayer_:setTouchEnabled(true)

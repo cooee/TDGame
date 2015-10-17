@@ -43,7 +43,7 @@ end
 
 function GeneralTool:selected(selectedButtonName)
     if selectedButtonName == "SaveMap" then
-        self.toolbar_:selectButton("GeneralTool", 1)
+        self.toolbar_:selectButton("GeneralTool",1)
         -- if self.map_:dumpToFile() then
         --     self.toolbar_:showNotice("Save Map OK")
         -- end
@@ -66,7 +66,8 @@ function GeneralTool:selected(selectedButtonName)
         self.toolbar_:selectButton("GeneralTool", 1)
 
     elseif selectedButtonName == "PlayMap" then
-        self.toolbar_:dispatchEvent({name = "PLAY_MAP"})
+        -- self.toolbar_:dispatchEvent({name = "PLAY_MAP"})
+        g_EventManager:dispatchEvent(Event.PLAY_MAP)
         self.toolbar_:selectButton("GeneralTool", 1)
     end
 end

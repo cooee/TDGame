@@ -1,4 +1,5 @@
 local EventManager = class("EventManager");
+
 function EventManager:ctor()
 	self._observerList = {}
 	self._eventPair = {}

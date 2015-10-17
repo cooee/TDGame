@@ -61,11 +61,11 @@ g_load_enemy="enemy/"
 g_load_ui="ui/"
 --
 
-g_UICreator = require("app.framework.util.UICreator").new();
-g_eventManager = require("app.framework.event.EventManager").new();
-g_Event = require("app.framework.event.Event");
+-- g_UICreator = require("app.framework.util.UICreator").new();
+-- g_eventManager = require("app.framework.event.EventManager").new();
+-- g_Event = require("app.framework.event.Event");
 
-g_Toast = require("app.framework.util.XToast").new();
+-- g_Toast = require("app.framework.util.XToast").new();
 
-g_ColorManager = require("app.framework.manager.ColorManager");
-g_PlayerInfo = require("app.PlayerInfo").new();
+-- g_ColorManager = require("app.framework.manager.ColorManager");
+-- g_PlayerInfo = require("app.PlayerInfo").new();

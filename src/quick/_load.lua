@@ -7,3 +7,6 @@ import(".framework.extends._loadEx");
 local UICreator = import(".framework.util.UICreator");
 cc.exports.g_UICreator = UICreator.new();
 g_UICreator:show();
+
+local EventManager = import(".framework.event.EventManager");
+cc.exports.g_EventManager = EventManager.new();
