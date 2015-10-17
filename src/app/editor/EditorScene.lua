@@ -1,5 +1,5 @@
 
-local LEVEL_ID = "A0002"
+local LEVEL_ID = "A0001"
 
 local EditorConstants = import(".EditorConstants")
 
@@ -63,13 +63,13 @@ function EditorScene:ctor()
     self.toolbar_ = require("app.editor.Toolbar").new(self.map_)
     self.toolbar_:addTool(require("app.editor.GeneralTool").new(self.toolbar_, self.map_))
     self.toolbar_:addTool(require("app.editor.ObjectTool").new(self.toolbar_, self.map_))
-    -- self.toolbar_:addTool(require("app.editor.PathTool").new(self.toolbar_, self.map_))
+    self.toolbar_:addTool(require("app.editor.PathTool").new(self.toolbar_, self.map_))
     -- self.toolbar_:addTool(require("app.editor.RangeTool").new(self.toolbar_, self.map_))
     -- cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
     -- 创建工具栏的视图
     self.toolbarView_ = self.toolbar_:createView(self.uiLayer_, "#ToolbarBg.png", EditorConstants.TOOLBAR_PADDING, self.editorUIScale, self.toolbarLines)
     self.toolbarView_:setPosition(display.left, display.bottom)
-    dump(self.toolbar_ )
+    -- dump(self.toolbar_ )
     -- self.toolbar_:setDefaultTouchTool("GeneralTool")
     -- self.toolbar_:selectButton("GeneralTool", 1)
 
@@ -252,8 +252,6 @@ end
 
 function EditorScene:onTouch(event, x, y)
     if self.mapRuntime_ then
-
-        
         -- 如果正在运行地图，将触摸事件传递到地图
         if self.mapRuntime_:onTouch(event, x, y, map) == true then
             return true
@@ -287,11 +285,11 @@ function EditorScene:onTouch(event, x, y)
 
     -- 如果没有运行地图，则将事件传递到工具栏
     x, y = math.round(x), math.round(y)
-    if event == "began" then
-        if self.objectInspector_:getView():isVisible() and self.objectInspector_:checkPointIn(x, y) then
-            return self.objectInspector_:onTouch(event, x, y)
-        end
-    end
+    -- if event == "began" then
+    --     if self.objectInspector_:getView():isVisible() and self.objectInspector_:checkPointIn(x, y) then
+    --         return self.objectInspector_:onTouch(event, x, y)
+    --     end
+    -- end
 
     return self.toolbar_:onTouch(event, x, y)
 end

@@ -92,7 +92,7 @@ function RangeTool:onTouchSelectRange(event, x, y)
         else
             local offset = x - self.currentRangeResize_.lastX
             self.currentRangeResize_.lastX = x
-            self.currentRange_:setRadius(self.currentRange_:getRadius() + offset)
+            -- self.currentRange_:setRadius(self.currentRange_:getRadius() + offset)
             self.currentRange_:updateView()
         end
     end

@@ -1,6 +1,6 @@
 
-local EditorConstants = require("editor.EditorConstants")
-local ToolBase = require("editor.ToolBase")
+local EditorConstants = require("app.editor.EditorConstants")
+local ToolBase = import(".ToolBase")
 local PathTool = class("PathTool", ToolBase)
 
 PathTool.LINK_CHECK_DIST = 12
@@ -43,6 +43,7 @@ function PathTool:selected(selectedButtonName)
     PathTool.super.selected(self, selectedButtonName)
 
     if selectedButtonName == "CreatePath" then
+        g_UICreator:showMsg("CreatePath")
         self:setCurrentPath()
     end
     self:setMoreButtonsEnabled(self.currentPath_ ~= nil)
@@ -57,8 +58,8 @@ function PathTool:unselected()
 end
 
 function PathTool:setMoreButtonsEnabled(isEnabled)
-    self.buttons[3].sprite:setButtonEnabled(isEnabled)
-    self.buttons[4].sprite:setButtonEnabled(isEnabled)
+    self.buttons[3].sprite:setEnabled(isEnabled)
+    self.buttons[4].sprite:setEnabled(isEnabled)
 end
 
 function PathTool:setCurrentPath(path, pointIndex)
@@ -80,14 +81,14 @@ end
 
 function PathTool:showPointLabel(x, y, text)
     if not self.currentPointLabel_ then
-        self.currentPointLabel_ = ui.newTTFLabelWithOutline({
+
+        self.currentPointLabel_ = g_UICreator:createLabelTTF({
             text         = "000",
             font         = EditorConstants.LABEL_FONT,
             size         = EditorConstants.LABEL_FONT_SIZE + 10,
             color        = ccc3(255, 0, 0),
-            outlineColor = ccc3(255, 255, 255),
-            align        = ui.TEXT_ALIGN_CENTER,
         })
+
         self.map_:getDebugLayer():addChild(self.currentPointLabel_, EditorConstants.LABEL_ZORDER)
     else
         self.currentPointLabel_:setVisible(true)
@@ -132,7 +133,7 @@ end
 
 function PathTool:onTouchCreatePath(event, x, y)
     if event == "began" then
-        local state = {points = {{x, y}}}
+        local state = {points = {{x=x, y=y}}}
         self:setCurrentPath(self.map_:newObject("path", state), 1)
         self:setMoreButtonsEnabled(true)
         self.toolbar_:selectButton("PathTool", 3) -- AddPathPoint

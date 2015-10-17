@@ -150,7 +150,7 @@ function UICreator:createLabelTTF(str)
         local font       = params.font or display.DEFAULT_TTF_FONT
         local size       = params.size or display.DEFAULT_TTF_FONT_SIZE
         local color      = params.color or display.COLOR_WHITE
-        local textAlign  = params.align or ui.TEXT_ALIGN_LEFT
+        local textAlign  = params.align or cc.TEXT_ALIGNMENT_CENTER
         -- local textValign = params.valign or ui.TEXT_VALIGN_CENTER
         local x, y       = params.x, params.y
         -- local dimensions = params.dimensions
@@ -163,6 +163,24 @@ function UICreator:createLabelTTF(str)
         label:setString(str);
     end
     return label;
+end
+
+function UICreator:showMsg(text, fontsize, delay)
+    local label = g_UICreator:createLabelTTF({
+        text = text,
+        size = fontsize or 96,
+        color = ccc3(100, 255, 100),
+        align = cc.TEXT_ALIGNMENT_CENTER,
+    });
+
+
+    label:setPosition(display.cx, display.cy)
+    display:getRunningScene():addChild(label)
+
+    transition.moveBy(label, {y = 20, time = 1.0, delay = delay or 0.5})
+    transition.fadeOut(label, {time = 1.0, delay = delay or 0.5, onComplete = function()
+        label:removeSelf()
+    end})
 end
 
 

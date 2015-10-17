@@ -64,10 +64,33 @@ function MainScene:createResoueceNode2(resourceFilename)
     -- btn:setContentSize(64,64);
     dump(size)
 
+    local draw = cc.DrawNode:create()
+    draw:addTo(self)
+    draw:setLocalZOrder(100)
+    -- draw:drawCircle(cc.p(100 ,100), 110, math.pi/2, 60, false, cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))
+
+    local o = 80
+    local w = 20
+    local h = 50
+    local star1 = { cc.p(100,100), cc.p(120,100), cc.p(130,100)}
+        
+    draw:drawPolygon(star1, table.getn(star1), cc.c4f(1,0,0,0.5), 2, cc.c4f(0,0,1,1))
+
+
+            local vertices3 = { cc.p(60,160), cc.p(70,190), cc.p(100,190), cc.p(90,160) }
+        draw:drawSolidPoly( vertices3, 4, cc.c4f(0,0,1,1) )
+
+          draw:drawSolidRect(cc.p(10,10), cc.p(20,20), cc.c4f(1,1,0,1))
+    -- draw:drawCircle(cc.p(200 ,200), 100, math.pi/2, 300, true, cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))
+           --draw two circle
+    -- draw:drawCircle(cc.p(VisibleRect:center().x + 140 ,VisibleRect:center().y), 110, math.pi/2, 50, true, 1.0, 2.0, cc.c4f(1.0, 0.0, 0.0, 0.5))
+    
+    -- draw:drawCircle(cc.p(VisibleRect:center().x - 140 ,VisibleRect:center().y), 50, math.pi/2, 30, false, cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))
+
+    local vertices = { cc.p(0,0), cc.p(50,50), cc.p(100,50), cc.p(100,100), cc.p(50,100) }
+    draw:drawPoly(vertices, 5, false, cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))
 
 end
-
-
 function MainScene:callBackProvider(luaFileName, node, callbackName)
     dump("luaFileName",luaFileName)
     dump("node",node);
