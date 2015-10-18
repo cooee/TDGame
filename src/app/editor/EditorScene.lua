@@ -28,6 +28,10 @@ function EditorScene:ctor()
     end
 
     cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetEditor.plist")
+    cc.SpriteFrameCache:getInstance():addSpriteFrames("SheetMapBattle.plist")
+    cc.SpriteFrameCache:getInstance():addSpriteFrames("tower/tower.plist")
+    cc.SpriteFrameCache:getInstance():addSpriteFrames("tower/Tower_02_Shell.plist")
+    
     -- local btn = g_UICreator:createImage({file = "DragMapButton.png",scale9Rect={5,5,5,5}});
     -- btn:move(100,100);
     -- btn:addTo(self);

@@ -23,7 +23,6 @@ local function main()
 
     local EditorScene = require("app.editor.EditorScene");
     local scene = EditorScene.new();
-    dump(scene);
     display.runScene(scene, transition, time, more)
 
 end

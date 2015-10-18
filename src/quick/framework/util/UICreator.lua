@@ -100,7 +100,7 @@ function UICreator:createCheckBox(file)
     local btn = ccui.CheckBox:create()
     btn:ignoreContentAdaptWithSize(true)
     if type(file) == "table" then
-        dump(file)
+        -- dump(file)
         local name = file.name;
         if name then
             btn:setName(name);

@@ -1,13 +1,14 @@
+---对象操作工具
 
--- local StaticObjectsProperties = require("game.properties.StaticObjectsProperties")
--- local StaticObject            = require("game.map.StaticObject")
--- local MapConstants            = require("game.map.MapConstants")
--- local EditorConstants         = require("editor.EditorConstants")
+local StaticObjectsProperties = require("app.game.properties.StaticObjectsProperties")
+local StaticObject            = require("app.game.map.StaticObject")
+local MapConstants            = require("app.game.map.MapConstants")
+local EditorConstants         = require("app.editor.EditorConstants")
 
 local ToolBase = import(".ToolBase")
 local ObjectTool = class("ObjectTool", ToolBase)
 
-ObjectTool.TOOLBOX_PADDING     = 98
+ObjectTool.TOOLBOX_PADDING     = 97
 ObjectTool.TOOLBOX_ICON_SIZE   = 96
 ObjectTool.TOOLBOX_MAX_COLUMNS = 8
 ObjectTool.TOOLBOX_ZORDER      = 20000
@@ -37,12 +38,12 @@ function ObjectTool:ctor(toolbar, map)
             image         = "#RemoveObjectButton.png",
             imageSelected = "#RemoveObjectButtonSelected.png",
         },
-        {
-            name          = "BindObjectToPath",
-            image         = "#BindObjectToPathButton.png",
-            imageSelected = "#BindObjectToPathButtonSelected.png",
-            imageDisabled = "#BindObjectToPathButtonDisabled.png",
-        },
+        -- {
+        --     name          = "BindObjectToPath",
+        --     image         = "#BindObjectToPathButton.png",
+        --     imageSelected = "#BindObjectToPathButtonSelected.png",
+        --     imageDisabled = "#BindObjectToPathButtonDisabled.png",
+        -- },
     }
 
     -- self.toolbar_:addEventListener("UPDATE_OBJECT", function(event)
@@ -55,7 +56,6 @@ function ObjectTool:selected(selectedButtonName)
     print("selectedButtonName " ..selectedButtonName);
     if selectedButtonName == "BindObjectToPath" then 
         if self.currentObject_ then
-             print("xxxxxxxxxxxx");
             self.currentObject_:updateView()
         end
         self:createObjectBindingLabel("选择要绑定的路径点", "static")
@@ -75,9 +75,9 @@ end
 
 function ObjectTool:setMoreButtonsEnabled(isEnabled)
     if isEnabled and self.currentObject_ and self.currentObject_:hasBehavior("MovableBehavior") then
-        self.buttons[4].sprite:setButtonEnabled(true)
+        self.buttons[3].sprite:setEnabled(true)
     else
-        self.buttons[4].sprite:setButtonEnabled(false)
+        self.buttons[3].sprite:setEnabled(false)
     end
 end
 
@@ -246,7 +246,6 @@ function ObjectTool:reset()
 end
 
 function ObjectTool:onTouchBindObjectToPath(event, x, y)
-    print("x" .. x)
     if self.currentObject_ == nil then
         return;
     end
@@ -271,7 +270,6 @@ end
 
 function ObjectTool:onTouch(event, x, y)
     local x, y = self.map_:getCamera():convertToMapPosition(x, y)
-
     if self.selectedButtonName_ == "CreateObject" then
         return self:onTouchCreateObject(event, x, y)
     elseif self.selectedButtonName_ == "SelectObject" then
@@ -286,9 +284,13 @@ end
 function ObjectTool:showToolbox(mapX, mapY)
     assert(self.toolbox_ == nil)
     local layer = display.newNode()
+
     layer:setPosition(mapX, mapY)
 
     local allIds = StaticObjectsProperties.getAllIds()
+
+    dump(allIds)
+
     local count = #allIds
     local maxColumns = math.ceil(math.sqrt(count))
     if maxColumns > ObjectTool.TOOLBOX_MAX_COLUMNS then
@@ -301,6 +303,8 @@ function ObjectTool:showToolbox(mapX, mapY)
     local x = -(columns / 2) * ObjectTool.TOOLBOX_PADDING + ObjectTool.TOOLBOX_PADDING / 2
     local y = (rows / 2) * ObjectTool.TOOLBOX_PADDING - ObjectTool.TOOLBOX_PADDING / 2
     local width, height = self.map_:getSize()
+    dump(x, "x")
+    dump(y, "y")
 
     local minX = ObjectTool.TOOLBOX_PADDING / 2
     if mapX + x < minX then x = minX - mapX end
@@ -319,17 +323,19 @@ function ObjectTool:showToolbox(mapX, mapY)
 
     local bgWidth = columns * ObjectTool.TOOLBOX_PADDING + 4
     local bgHeight = rows * ObjectTool.TOOLBOX_PADDING + 4
-    local rect = display.newRect(bgWidth, bgHeight)
-    rect:setFill(true)
-    rect:setLineColor(ccc4FFromccc4B(ccc4(120, 120, 120, 80)))
-    rect:setOpacity(80)
-    rect:setPosition(x + bgWidth / 2 - ObjectTool.TOOLBOX_PADDING / 2 - 2,
-                     y - bgHeight / 2 + ObjectTool.TOOLBOX_PADDING / 2 + 2)
-    layer:addChild(rect)
+    -- local rect = display.newRect(bgWidth, bgHeight)
+    -- rect:setFill(true)
+    -- rect:setLineColor(ccc4FFromccc4B(ccc4(120, 120, 120, 80)))
+    -- rect:set
+    -- rect:setOpacity(80)
+    -- rect:setPosition(x + bgWidth / 2 - ObjectTool.TOOLBOX_PADDING / 2 - 2,
+    --                  y - bgHeight / 2 + ObjectTool.TOOLBOX_PADDING / 2 + 2)
+    -- layer:addChild(rect)
 
     local col = 0
     for i, id in ipairs(allIds) do
         local define = StaticObjectsProperties.get(id)
+        dump(define)
         local sprite
         if define.framesName then
             sprite = display.newSprite("#" .. string.format(define.framesName, define.framesBegin))
@@ -352,11 +358,11 @@ function ObjectTool:showToolbox(mapX, mapY)
         sprite:setScale(scale)
 
         local rect = display.newRect(ObjectTool.TOOLBOX_ICON_SIZE,
-                                     ObjectTool.TOOLBOX_ICON_SIZE)
-        rect:setFill(true)
-        rect:setLineColor(ccc4FFromccc4B(ccc4(32, 32, 32, 120)))
-        rect:setOpacity(70)
-        rect:setPosition(x, y)
+                                     ObjectTool.TOOLBOX_ICON_SIZE,
+                                     {isFill = true,color = cc.c4f(1, 0, 0, 0.3)})
+
+        rect:move(x-ObjectTool.TOOLBOX_ICON_SIZE*0.5,y-ObjectTool.TOOLBOX_ICON_SIZE*0.5)
+
         layer:addChild(rect)
 
         layer:addChild(sprite)

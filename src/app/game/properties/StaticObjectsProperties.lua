@@ -29,16 +29,16 @@ defines["IncreaseHp"] = object
 
 ----------------------------------------
 
--- local object = {
---     classId     = "static",
---     imageName   = "#Building01.png",
---     radius      = 60,
---     offsetX     = -10,
---     offsetY     = 35,
---     decorations = {},
---     campId      = MapConstants.ENEMY_CAMP,
--- }
--- defines["Building01"] = object
+local object = {
+    classId     = "static",
+    imageName   = "#Building01.png",
+    radius      = 60,
+    offsetX     = -10,
+    offsetY     = 35,
+    decorations = {},
+    campId      = MapConstants.ENEMY_CAMP,
+}
+defines["Building01"] = object
 
 ----------------------------------------
 
@@ -88,20 +88,20 @@ defines["PlayerTower01"] = object
 -- defines["PlayerTower02"] = object
 
 
-local object = {
-    classId     = "static",
-    imageName   = {"#gun_tower_1_1.png"},
-    radius      = 32,
-    -- offsetX     = {-15, -16, -16},
-    -- offsetY     = {3, 3, 2},
-    towerId     = "Tower02L01",
-    decorations = {"PlayerTower02Destroyed","Tower02L01FireAnim","Tower02L02FireAnim"},
-    behaviors   = {"TowerBehavior","TowerDecorateBehavior", "UpgradeBehavior"},
-    fireOffsetX = {0, 0, 0},
-    fireOffsetY = {24, 24, 24},
-    campId      = MapConstants.PLAYER_CAMP,
-}
-defines["Tower02"] = object
+-- local object = {
+--     classId     = "static",
+--     imageName   = {"#gun_tower_1_1.png"},
+--     radius      = 32,
+--     -- offsetX     = {-15, -16, -16},
+--     -- offsetY     = {3, 3, 2},
+--     towerId     = "Tower02L01",
+--     decorations = {"PlayerTower02Destroyed","Tower02L01FireAnim","Tower02L02FireAnim"},
+--     behaviors   = {"TowerBehavior","TowerDecorateBehavior", "UpgradeBehavior"},
+--     fireOffsetX = {0, 0, 0},
+--     fireOffsetY = {24, 24, 24},
+--     campId      = MapConstants.PLAYER_CAMP,
+-- }
+-- defines["Tower02"] = object
 
 
 local object = {

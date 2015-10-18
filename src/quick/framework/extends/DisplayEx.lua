@@ -30,31 +30,6 @@ function display.newDrawNode()
 	return cc.DrawNode:create()
 end
 
---[[--
-
-Create a circle or a sector or a pie by CCDrawNode
-
-Creation: 2014-03-11
-
-@author zrong(zengrong.net)
-
-@param mixed filename As same a the first parameter for display.newSprite
-@param table params As same as the third parameter for display.newFilteredSprite
-
-@return An instance of CCFilteredSprite
-
-]]
-function display.newSolidCircle(radius, params)
-	local circle = display.newDrawNode()
-	circle:drawCircle(radius, params)
-	local x,y = 0,0
-	if params then
-		x = params.x or x
-		y = params.y or y
-	end
-	circle:pos(x,y)
-	return circle
-end
 
 --[[--
 
@@ -74,9 +49,22 @@ function display.newCircle(radius, params)
 		x = params.x or x
 		y = params.y or y
 	end
-	draw:drawCircle(cc.p(x ,y), radius, math.pi/2, 30, true,
+
+    -- draw:drawSolidCircle(cc.p(x,y), radius, math.pi/2, 50, 1.0, 1.0, cc.c4f(1,0,0,0.2))
+	draw:drawCircle(cc.p(x ,y), radius, math.pi/2, 3000, false,
 	cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))
 	return draw
+end
+
+function display.newSolidCircle(radius, params)
+    local draw = cc.DrawNode:create()
+    local x,y = 0,0;
+    if params then
+        x = params.x or x
+        y = params.y or y
+    end
+    draw:drawSolidCircle(cc.p(x,y), radius, math.pi/2, 50, 1.0, 1.0, cc.c4f(1,0,0,0.2))
+    return draw
 end
 
 --[[--
@@ -104,14 +92,39 @@ polygon:setClose(true) -- 将第一个点和最后一个点相连
 
 ]]
 function display.newPolygon(points, scale)
-
-    -- local vertices = { cc.p(0,0), cc.p(50,50), cc.p(100,50), cc.p(100,100), cc.p(50,200) }
-    -- dump(vertices)
-    -- dump(points)
 	local draw = cc.DrawNode:create()
     local color = cc.c4f(1, 1,0, 1);
-    dump(color)
+    -- dump(color)
     draw:drawPoly(points, #points, false, color) 
     -- draw:setLineWidth(2)
 	return draw
 end
+
+-- function display.newRect(width, height)
+--     local draw = cc.DrawNode:create()
+--     local color = cc.c4f(1, 1,0, 1);
+--     -- dump(color)
+--     -- draw:drawPoly(points, #points, false, color)
+--     draw:drawRect(cc.p(0,0), cc.p(width,height), cc.c4f(1,0,0,0.3))
+--     return draw
+-- end
+
+function display.newRect(width, height,params)
+    local draw = cc.DrawNode:create()
+    local color = cc.c4f(1, 1, 0, 0.5);   
+    local isFill = false;
+    if params then
+        color = params.color or color
+        isFill = params.isFill or isFill;
+    end
+
+    if isFill == true then
+        draw:drawSolidRect(cc.p(0,0), cc.p(width,height), color)
+    else
+        draw:drawRect(cc.p(0,0), cc.p(width,height), color)
+    end
+    return draw
+end
+
+
+       

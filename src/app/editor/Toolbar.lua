@@ -80,6 +80,7 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
     local bg = g_UICreator:createImage(bgImageName);
     bg:setContentSize(display.width,96);
     bg:setScale9Rect(5,5,5,5);
+    bg:setOpacity(125);
     bg:align(display.CENTER_BOTTOM, display.cx, 0)
     self.toolbarHeight_ = bg:getContentSize().height
     self.mView:addChild(bg)
@@ -98,7 +99,7 @@ function Toolbar:createView(parent, bgImageName, padding, scale, toolbarLines)
         local tool = self.tools_[toolName]
         tool.buttonsSprite = {}
         for buttonIndex, button in ipairs(tool.buttons) do
-            dump(button);
+            -- dump(button);
             button.sprite = g_UICreator:createCheckBox({
                 on = button.image,
                 off = button.imageSelected,
