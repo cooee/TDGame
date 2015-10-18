@@ -169,6 +169,11 @@ function EditorScene:addListener()
     g_EventManager:addEventListener(Event.PLAY_MAP, function()
    
     end, self)
+
+    --炮塔位置不合法
+    g_EventManager:addEventListener(Event.TowerPosNotValid, function()
+        g_UICreator:showMsg("炮塔位置不合法",{color = cc.c3b(255, 0, 0),delay=1})
+    end, self)
 end
 
 function EditorScene:removeListener()

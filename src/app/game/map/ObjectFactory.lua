@@ -16,6 +16,7 @@ function ObjectFactory.newObject(classId, id, state, map)
         if debug then
             object:bindBehavior("StaticObjectEditorBehavior")
         end
+        
     elseif classId == "move" then
         object = MoveObject.new(id, state, map)
         object:init()

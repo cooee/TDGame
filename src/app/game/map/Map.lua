@@ -191,6 +191,17 @@ function Map:newObject(classId, state, id)
     object:setDebugViewEnabled(self.debugViewEnabled_)
     object:resetAllBehaviors()
 
+    if  object:hasBehavior("TowerBehavior") then
+        if self:checkTowerPosValid(object) == false then
+            g_EventManager:dispatchEvent(Event.TowerPosNotValid)
+            return nil;
+        end
+    end
+
+
+
+
+
     -- validate max object index
     local index = object:getIndex()
     if index >= self.nextObjectIndex_ then
@@ -231,7 +242,7 @@ function Map:newObject(classId, state, id)
                 -- print("d13: ",pos.x, pos.y)
                 object.x_ = pos.x;
                 object.y_ = pos.y;
-                object:updateView();
+                -- object:updateView();
             else
                 self:removeObject(object);
                 return nil;
@@ -242,6 +253,26 @@ function Map:newObject(classId, state, id)
 
     return object
 end
+
+--[[--
+
+检查对象合法性
+
+]]
+function Map:checkTowerPosValid(object)
+    if self:checkTowerPos(object.x_,object.y_) then
+        local pos = self:getTowerPos(object.x_, object.y_)
+        object.x_ = pos.x;
+        object.y_ = pos.y;
+        return true;
+    else
+        return false;
+    end     
+
+    return false;
+end
+
+
 
 --[[--
 
@@ -637,9 +668,7 @@ end
 function Map:reset(state)
     self:removeAllObjects()
     if self:isViewCreated() then self:removeView() end
-
     self.data_ = clone(state)
-    dump(self.data_)
     self.ready_ = false
     self:init()
 end

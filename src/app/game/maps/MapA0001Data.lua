@@ -26,7 +26,6 @@ local object = {
 }
 objects["range:21"] = object
 
-----
 
 map.objects = objects
 

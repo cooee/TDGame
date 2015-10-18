@@ -92,7 +92,7 @@ function ObjectTool:setCurrentObject(object)
     if self.currentObject_ and self.currentObject_ ~= object then
         self.currentObject_:setSelected(false)
         self.currentObject_:updateView()
-        self.toolbar_:dispatchEvent({name = "UNSELECT_OBJECT"})
+        -- self.toolbar_:dispatchEvent({name = "UNSELECT_OBJECT"})
     end
 
     self.currentObject_ = object
@@ -101,7 +101,7 @@ function ObjectTool:setCurrentObject(object)
         object:setSelected(true)
         object:updateView()
         self:setMoreButtonsEnabled(true)
-        self.toolbar_:dispatchEvent({name = "SELECT_OBJECT", object = object})
+        -- self.toolbar_:dispatchEvent({name = "SELECT_OBJECT", object = object})
     else
         self:setMoreButtonsEnabled(false)
     end
@@ -152,6 +152,7 @@ function ObjectTool:onTouchCreateObject(event, x, y)
             return false
         else
             local object = self.toolbox_:checkPoint(x, y)
+            -- dump(object)
             if object then
                 self:setCurrentObject(object)
                 self:removeToolbox()
@@ -289,7 +290,7 @@ function ObjectTool:showToolbox(mapX, mapY)
 
     local allIds = StaticObjectsProperties.getAllIds()
 
-    dump(allIds)
+    -- dump(allIds)
 
     local count = #allIds
     local maxColumns = math.ceil(math.sqrt(count))
@@ -303,8 +304,8 @@ function ObjectTool:showToolbox(mapX, mapY)
     local x = -(columns / 2) * ObjectTool.TOOLBOX_PADDING + ObjectTool.TOOLBOX_PADDING / 2
     local y = (rows / 2) * ObjectTool.TOOLBOX_PADDING - ObjectTool.TOOLBOX_PADDING / 2
     local width, height = self.map_:getSize()
-    dump(x, "x")
-    dump(y, "y")
+    -- dump(x, "x")
+    -- dump(y, "y")
 
     local minX = ObjectTool.TOOLBOX_PADDING / 2
     if mapX + x < minX then x = minX - mapX end
@@ -335,7 +336,7 @@ function ObjectTool:showToolbox(mapX, mapY)
     local col = 0
     for i, id in ipairs(allIds) do
         local define = StaticObjectsProperties.get(id)
-        dump(define)
+        -- dump(define)
         local sprite
         if define.framesName then
             sprite = display.newSprite("#" .. string.format(define.framesName, define.framesBegin))

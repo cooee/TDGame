@@ -82,7 +82,7 @@ end
 function TowerAnim:removeView()
     self:stopAnimation()
     self:release()
-    _LogI("TowerAnim:removeView " .. self.name_)
+    -- _LogI("TowerAnim:removeView " .. self.name_)
     -- if self.sprite_ then
     --     self.sprite_:removeSelf()
     --     self.sprite_ = nil

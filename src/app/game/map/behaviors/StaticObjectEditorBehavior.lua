@@ -41,14 +41,14 @@ function StaticObjectEditorBehavior:bind(object)
         --     size  = EditorConstants.LABEL_FONT_SIZE,
         --     align = ui.TEXT_ALIGN_CENTER,
         -- })
-        object.idLabel_ = g_UICreator:createLabel(object:getId(), EditorConstants.LABEL_FONT_SIZE);
+        object.idLabel_ = g_UICreator:createLabelTTF(object:getId(), EditorConstants.LABEL_FONT_SIZE);
         object.idLabel_.offsetY = math.floor(-object.radius_ - EditorConstants.LABEL_OFFSET_Y)
         debugLayer:addChild(object.idLabel_, EditorConstants.LABEL_ZORDER)
 
         object.radiusCircle_ = display.newCircle(object.radius_)
-        object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.UNSELECTED_COLOR))))
-        object.radiusCircle_:setLineStipple(checknumber("1111000011110000", 2))
-        object.radiusCircle_:setLineStippleEnabled(true)
+        -- object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.UNSELECTED_COLOR))))
+        -- object.radiusCircle_:setLineStipple(checknumber("1111000011110000", 2))
+        -- object.radiusCircle_:setLineStippleEnabled(true)
         debugLayer:addChild(object.radiusCircle_, EditorConstants.CIRCLE_ZORDER)
 
         object.flagSprite_ = display.newSprite("CenterFlag.png")
@@ -57,14 +57,13 @@ function StaticObjectEditorBehavior:bind(object)
         if object:hasBehavior("FireBehavior") then
             object.fireRangeCircle_ = display.newCircle(object.fireRange_)
             -- object.fireRangeCircle_:setScaleY(MapConstants.RADIUS_CIRCLE_SCALE_Y)
-            object.fireRangeCircle_:setLineStipple(checknumber("1111000011110000", 2))
-            object.fireRangeCircle_:setLineStippleEnabled(true)
+            -- object.fireRangeCircle_:setLineStipple(checknumber("1111000011110000", 2))
+            -- object.fireRangeCircle_:setLineStippleEnabled(true)
             debugLayer:addChild(object.fireRangeCircle_)
         end
 
         if object:hasBehavior("UpgradeBehavior") then
-            _LogI("UpgradeBehavior")
-            object.levelLabel_ = g_UICreator:createLabel("Lv." .. object:getLevel(), EditorConstants.LABEL_FONT_SIZE);
+            object.levelLabel_ = g_UICreator:createLabelTTF("Lv." .. object:getLevel(), EditorConstants.LABEL_FONT_SIZE);
             debugLayer:addChild(object.levelLabel_)
             object.levelLabel_:setColor(ccc3(255,255,0))
         end
@@ -136,18 +135,15 @@ function StaticObjectEditorBehavior:bind(object)
         object.flagSprite_:setPosition(x, y)
         if object.isSelected_ then
             object.idLabel_:setColor(ccc3(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
-            object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.SELECTED_COLOR))))
+            -- object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.SELECTED_COLOR))))
         else
             object.idLabel_:setColor(ccc3(unpack(EditorConstants.UNSELECTED_LABEL_COLOR)))
-            object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.UNSELECTED_COLOR))))
+            -- object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.UNSELECTED_COLOR))))
         end
         object.flagSprite_:setScale(scale)
 
         if object:hasBehavior("CollisionBehavior") then
             if object:isCollisionEnabled() then
-                object.radiusCircle_:setLineStippleEnabled(false)
-            else
-                object.radiusCircle_:setLineStippleEnabled(true)
             end
         end
 
@@ -155,11 +151,9 @@ function StaticObjectEditorBehavior:bind(object)
             local circle = object.fireRangeCircle_
             circle:setPosition(x + object.radiusOffsetX_, y + object.radiusOffsetY_)
             if object.isSelected_ then
-                circle:setLineColor(ccc4FFromccc4B(ccc4(unpack(StaticObjectEditorBehavior.FIRE_CIRCLE_SELECTED_COLOR))))
-                object.fireRangeCircle_:setLineStippleEnabled(false)
+                -- object.fireRangeCircle_:setLineStippleEnabled(false)
             else
-                circle:setLineColor(ccc4FFromccc4B(ccc4(unpack(StaticObjectEditorBehavior.FIRE_CIRCLE_UNSELECTED_COLOR))))
-                object.fireRangeCircle_:setLineStippleEnabled(true)
+                -- object.fireRangeCircle_:setLineStippleEnabled(true)
             end
         end
 
@@ -171,7 +165,6 @@ function StaticObjectEditorBehavior:bind(object)
         -- end
 
         if object:hasBehavior("UpgradeBehavior") then
-            _LogI("object:hasBehavior(")
             object.levelLabel_:setString("Lv." .. object:getLevel())
             local x2 = x + object.radiusOffsetX_
             local y2 = y + object.radiusOffsetY_ + object.radius_ + MapConstants.LEVEL_LABEL_OFFSET_Y

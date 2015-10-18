@@ -140,12 +140,14 @@ function UICreator:createCheckBox(file)
 end
 
 
-function UICreator:createLabelTTF(str)
+function UICreator:createLabelTTF(str,size)
     local label = nil;
     
 
     if type(str) == "table" then
+
         local params = str;
+         -- dump(params)
         local text       = tostring(params.text)
         local font       = params.font or display.DEFAULT_TTF_FONT
         local size       = params.size or display.DEFAULT_TTF_FONT_SIZE
@@ -155,24 +157,38 @@ function UICreator:createLabelTTF(str)
         local x, y       = params.x, params.y
         -- local dimensions = params.dimensions
         label = cc.LabelTTF:create(text,font,size)
+        label:setColor(color);
         -- static LabelTTF * create(const std::string& string, const std::string& fontName, float fontSize,
         --                      const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
         --                      TextVAlignment vAlignment = TextVAlignment::TOP);
     else
         label = cc.LabelTTF:create()
         label:setString(str);
+        if size then
+           label:setFontSize(size);
+        end
     end
     return label;
 end
 
-function UICreator:showMsg(text, fontsize, delay)
+function UICreator:showMsg(text,params)
+    local fontsize = 48;
+    local delay = 0.5;
+    local textColor = ccc3(100, 255, 100);
+    if params then
+        fontsize        = params.fontsize or fontsize
+        delay           = params.delay or delay
+        textColor       = params.color or textColor
+    end
+    -- dump(textColor)
     local label = g_UICreator:createLabelTTF({
         text = text,
         size = fontsize or 48,
-        color = ccc3(100, 255, 100),
+        color = textColor,
         align = cc.TEXT_ALIGNMENT_CENTER,
     });
 
+    -- local delay = 0.5;
 
     label:setPosition(display.cx, display.cy)
     display:getRunningScene():addChild(label)
