@@ -13,7 +13,7 @@ function StaticObject:ctor(id, state, map)
         end
     end
     StaticObject.super.ctor(self, id, state, map)
-    self.map_ = nil;
+    -- self.map_ = nil;
     self.radiusOffsetX_ = checkint(self.radiusOffsetX_)
     self.radiusOffsetY_ = checkint(self.radiusOffsetY_)
     self.radius_        = checkint(self.radius_)
