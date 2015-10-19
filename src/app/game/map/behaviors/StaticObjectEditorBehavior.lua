@@ -51,14 +51,12 @@ function StaticObjectEditorBehavior:bind(object)
         -- object.radiusCircle_:setLineStippleEnabled(true)
         debugLayer:addChild(object.radiusCircle_, EditorConstants.CIRCLE_ZORDER)
 
-        object.flagSprite_ = display.newSprite("CenterFlag.png")
+        object.flagSprite_ = display.newSprite("#PointFlag.png")
         debugLayer:addChild(object.flagSprite_, EditorConstants.FLAG_ZORDER)
         -- object.flagSprite_:setColor(ccc3(255,0,0));
         if object:hasBehavior("FireBehavior") then
             object.fireRangeCircle_ = display.newCircle(object.fireRange_)
-            -- object.fireRangeCircle_:setScaleY(MapConstants.RADIUS_CIRCLE_SCALE_Y)
-            -- object.fireRangeCircle_:setLineStipple(checknumber("1111000011110000", 2))
-            -- object.fireRangeCircle_:setLineStippleEnabled(true)
+            object.fireRangeCircle_:setVisible(false);
             debugLayer:addChild(object.fireRangeCircle_)
         end
 
@@ -131,14 +129,18 @@ function StaticObjectEditorBehavior:bind(object)
         object.idLabel_:setScale(scale)
 
         object.radiusCircle_:setPosition(x + object.radiusOffsetX_, y + object.radiusOffsetY_)
-
+        object.radiusCircle_:setVisible(false);
         object.flagSprite_:setPosition(x, y)
         if object.isSelected_ then
+            object.flagSprite_:setVisible(true);
+            object.idLabel_:setVisible(true);
             object.idLabel_:setColor(ccc3(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
-            -- object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.SELECTED_COLOR))))
+            object.radiusCircle_:setVisible(true);
         else
+            object.flagSprite_:setVisible(false);
+            object.idLabel_:setVisible(false);
             object.idLabel_:setColor(ccc3(unpack(EditorConstants.UNSELECTED_LABEL_COLOR)))
-            -- object.radiusCircle_:setLineColor(ccc4FFromccc4B(ccc4(unpack(EditorConstants.UNSELECTED_COLOR))))
+            object.radiusCircle_:setVisible(false);
         end
         object.flagSprite_:setScale(scale)
 
@@ -151,9 +153,9 @@ function StaticObjectEditorBehavior:bind(object)
             local circle = object.fireRangeCircle_
             circle:setPosition(x + object.radiusOffsetX_, y + object.radiusOffsetY_)
             if object.isSelected_ then
-                -- object.fireRangeCircle_:setLineStippleEnabled(false)
+                object.fireRangeCircle_:setVisible(true);
             else
-                -- object.fireRangeCircle_:setLineStippleEnabled(true)
+                object.fireRangeCircle_:setVisible(false);
             end
         end
 

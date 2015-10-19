@@ -26,6 +26,32 @@ local object = {
 }
 objects["range:21"] = object
 
+----
+
+local object = {
+    defineId = "IncreaseHp",
+    flipSprite = false,
+    tag = 0,
+    x = 860,
+    y = 255,
+}
+objects["static:23"] = object
+
+----
+
+local object = {
+    defineId = "IncreaseHp",
+    flipSprite = false,
+    tag = 0,
+    x = 203,
+    y = 519,
+}
+objects["static:25"] = object
+
+----
+
+
+----
 
 map.objects = objects
 

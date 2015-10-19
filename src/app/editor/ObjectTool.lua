@@ -53,7 +53,6 @@ end
 
 function ObjectTool:selected(selectedButtonName)
     ObjectTool.super.selected(self, selectedButtonName)
-    print("selectedButtonName " ..selectedButtonName);
     if selectedButtonName == "BindObjectToPath" then 
         if self.currentObject_ then
             self.currentObject_:updateView()
@@ -74,7 +73,7 @@ function ObjectTool:unselected()
 end
 
 function ObjectTool:setMoreButtonsEnabled(isEnabled)
-    if isEnabled and self.currentObject_ and self.currentObject_:hasBehavior("MovableBehavior") then
+    if isEnabled and self.currentObject_ then
         self.buttons[3].sprite:setEnabled(true)
     else
         self.buttons[3].sprite:setEnabled(false)
@@ -100,10 +99,10 @@ function ObjectTool:setCurrentObject(object)
     if object then
         object:setSelected(true)
         object:updateView()
-        self:setMoreButtonsEnabled(true)
+        -- self:setMoreButtonsEnabled(true)
         -- self.toolbar_:dispatchEvent({name = "SELECT_OBJECT", object = object})
     else
-        self:setMoreButtonsEnabled(false)
+        -- self:setMoreButtonsEnabled(false)
     end
 end
 
@@ -152,7 +151,6 @@ function ObjectTool:onTouchCreateObject(event, x, y)
             return false
         else
             local object = self.toolbox_:checkPoint(x, y)
-            -- dump(object)
             if object then
                 self:setCurrentObject(object)
                 self:removeToolbox()
@@ -216,7 +214,7 @@ function ObjectTool:onTouchSelectObject(event, x, y)
         self.map_:setAllObjectsZOrder()
 
     else
-        self.toolbar_:dispatchEvent({name = "UPDATE_OBJECT", object = self.currentObject_})
+        -- self.toolbar_:dispatchEvent({name = "UPDATE_OBJECT", object = self.currentObject_})
 
         if self.currentObjectBindingPathId_ and not self.currentObject_:isBinding() then
             self:createObjectBindingLabel("对象已经解除绑定")
