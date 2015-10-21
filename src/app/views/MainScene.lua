@@ -25,6 +25,7 @@ function MainScene:createResoueceNode2(resourceFilename)
     local root   = Result.create(handler(self, self.callBackProvider));
     -- root.Default:align(display.CENTER,display.cx,display.cy)
     self.resourceNode_ = root.root
+
     assert(self.resourceNode_, string.format("ViewBase:createResoueceNode() - load resouce node from file \"%s\" failed", resourceFilename))
     self:addChild(self.resourceNode_)
 
