@@ -42,10 +42,10 @@ function MoveObject:createMoveSprite(file)
     print("file " .. file);
     local pHeroTexture = nil;
 
-    if cc.TextureCache:getInstance():getTextureForKey(file) then
-        pHeroTexture = cc.TextureCache:getInstance():getTextureForKey(file);
+    if cc.Director:getInstance():getTextureCache():getTextureForKey(file) then
+        pHeroTexture = cc.Director:getInstance():getTextureCache():getTextureForKey(file);
     else
-        pHeroTexture = cc.TextureCache:getInstance():addImage(file);
+        pHeroTexture = cc.Director:getInstance():getTextureCache():addImage(file);
     end
     
     local size = pHeroTexture:getContentSize();

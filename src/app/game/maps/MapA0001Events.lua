@@ -10,7 +10,7 @@ function MyMapEventHandler:preparePlay()
     MyMapEventHandler.super.preparePlay(self)
 
     self.createNextEnemyDelay_    = 1 -- 等待多少时间创建下一个敌人
-    self.createNextEnemyInterval_ = 100000 -- 创建下一个敌人前的间隔时间
+    self.createNextEnemyInterval_ = 1 -- 创建下一个敌人前的间隔时间
     self.enemyCount_              = 0 -- 敌人总数
 end
 
@@ -29,8 +29,8 @@ function MyMapEventHandler:time(time, dt)
         enemy:bindPath(self.map_:getObject(pathId), 1)
         enemy:setSpeed(400)
         enemy:startMoving()
-        dump(enemy)
-        dump(dt)
+        -- dump(enemy)
+        -- dump(dt)
 
         self.enemyCount_ = self.enemyCount_ + 1
     end
