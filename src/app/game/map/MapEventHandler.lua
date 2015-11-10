@@ -35,7 +35,7 @@ end
 
 -- 停止游戏
 function MapEventHandler:stopPlay()
-    g_eventManager:removeListenerWithTarget(self)
+    g_EventManager:removeListenerWithTarget(self)
 end
 
 -- 每秒执行一次 time() 方法
@@ -155,7 +155,7 @@ function MapEventHandler:destroyed(target)
     target:showDestroyedStatus()
     target:updateView()
     self:objectDestroyed(target)
-    g_eventManager:dispatchEvent("objectDestroyed",target);
+    g_EventManager:dispatchEvent("objectDestroyed",target);
 end
 
 -- 没有命中目标
@@ -165,7 +165,7 @@ end
 -- 对象被摧毁
 function MapEventHandler:objectDestroyed(object)
     if self.runtime_.over_ then return end
-    self.runtime_:dispatchEvent({name = MapEvent.OBJECT_DESTROY, object = object})
+    -- self.runtime_:dispatchEvent({name = MapEvent.OBJECT_DESTROY, object = object})
     if object:hasBehavior("NPCBehavior") then
         self:showShipExplode(object)
     end

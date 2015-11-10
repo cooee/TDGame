@@ -57,59 +57,59 @@ function FireBehavior:bind(object)
         end
       
         local delay = 0;
-        -- if object:hasBehavior("DecorateBehavior") then
-        --     local decorationName = object:getDefineId() .. "Fire"
+        if object:hasBehavior("DecorateBehavior") then
+            local decorationName = object:getDefineId() .. "Fire"
             
-        --     if object:isDecorationExists(decorationName) then
-        --         local decoration = object:getDecoration(decorationName)
-        --         local autoHide = decoration.visible_ == false
-        --         if autoHide then decoration:setVisible(true) end
-        --         object:getView():setVisible(false);
-        --         decoration:playAnimationOnce(function()
-        --             if autoHide then decoration:setVisible(false) end
-        --             decoration:setDisplayFrameIndex(1)
-        --         end)
-        --         if decoration.bulletDelay_ then
-        --             delay = decoration.bulletDelay_;
-        --         end
-        --     end
-
-        --     local decorationName = object:getDefineId() .. "Fire2"
-        --     if object:isDecorationExists(decorationName) then
-        --         local decoration = object:getDecoration(decorationName)
-        --         local autoHide = decoration.visible_ == false
-        --         if autoHide then decoration:setVisible(true) end
-        --         decoration:setVisible(true)
-        --         decoration:playAnimationOnce(function()
-        --             if autoHide then decoration:setVisible(false) end
-        --             decoration:setVisible(false)
-        --             decoration:setDisplayFrameIndex(1)
-        --         end)
-        --     end
-        -- end
-
-        if object:hasBehavior("TowerDecorateBehavior") then
-            local decorationName = object:getDecorationName();
             if object:isDecorationExists(decorationName) then
                 local decoration = object:getDecoration(decorationName)
                 local autoHide = decoration.visible_ == false
                 if autoHide then decoration:setVisible(true) end
-                -- object:getView():setVisible(false);
+                object:getView():setVisible(false);
                 decoration:playAnimationOnce(function()
-                    if autoHide then decoration:setVisible(false) end    
-                    if object.bulletType_ == 3 then
-                        decoration:setDisplayFrameIndex(5)
-                    else
-                        decoration:setDisplayFrameIndex(1)
-                    end
+                    if autoHide then decoration:setVisible(false) end
+                    decoration:setDisplayFrameIndex(1)
                 end)
-                
                 if decoration.bulletDelay_ then
                     delay = decoration.bulletDelay_;
                 end
             end
-            print("object.bulletType_ " .. object.bulletType_)
+
+            local decorationName = object:getDefineId() .. "Fire2"
+            if object:isDecorationExists(decorationName) then
+                local decoration = object:getDecoration(decorationName)
+                local autoHide = decoration.visible_ == false
+                if autoHide then decoration:setVisible(true) end
+                decoration:setVisible(true)
+                decoration:playAnimationOnce(function()
+                    if autoHide then decoration:setVisible(false) end
+                    decoration:setVisible(false)
+                    decoration:setDisplayFrameIndex(1)
+                end)
+            end
         end
+
+        -- if object:hasBehavior("TowerDecorateBehavior") then
+        --     local decorationName = object:getDecorationName();
+        --     if object:isDecorationExists(decorationName) then
+        --         local decoration = object:getDecoration(decorationName)
+        --         local autoHide = decoration.visible_ == false
+        --         if autoHide then decoration:setVisible(true) end
+        --         -- object:getView():setVisible(false);
+        --         decoration:playAnimationOnce(function()
+        --             if autoHide then decoration:setVisible(false) end    
+        --             if object.bulletType_ == 3 then
+        --                 decoration:setDisplayFrameIndex(5)
+        --             else
+        --                 decoration:setDisplayFrameIndex(1)
+        --             end
+        --         end)
+                
+        --         if decoration.bulletDelay_ then
+        --             delay = decoration.bulletDelay_;
+        --         end
+        --     end
+        --     print("object.bulletType_ " .. object.bulletType_)
+        -- end
 
         -- object.fireCooldown_ = object.cooldown_ * math.random(80, 120) / 100
 

@@ -16,7 +16,7 @@ ObjectBase.CLASS_INDEX = {
 }
 
 function ObjectBase:ctor(id, state, map)
-    dump(self);
+    -- dump(self);
     assert(type(state) == "table", "ObejctBase:ctor() - invalid state")
 
     for k, v in pairs(state) do

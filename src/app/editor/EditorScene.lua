@@ -320,8 +320,8 @@ function EditorScene:onExit()
         self.mapRuntime_:stopPlay()
     end
 
-    self.objectInspector_:removeAllEventListeners()
-    self.toolbar_:removeAllEventListeners()
+    -- self.objectInspector_:removeAllEventListeners()
+    -- self.toolbar_:removeAllEventListeners()
     -- self.gameCtr:release();
 end
 

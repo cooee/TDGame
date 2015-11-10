@@ -53,6 +53,28 @@ objects["static:25"] = object
 
 ----
 
+local object = {
+    behaviors = {
+        "CampBehavior",
+        "CollisionBehavior",
+        "DestroyedBehavior",
+        "FireBehavior",
+        "TowerBehavior",
+        "TowerDecorateBehavior",
+    },
+    campId = 1,
+    collisionEnabled = true,
+    defineId = "PlayerTower03",
+    flipSprite = false,
+    tag = 0,
+    towerId = "PlayerTower03L01",
+    x = 199,
+    y = 279,
+}
+objects["static:28"] = object
+
+----
+
 map.objects = objects
 
 return map

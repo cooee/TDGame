@@ -124,8 +124,8 @@ function MapRuntime:stopPlay()
     end
 
     self.handler_:stopPlay()
-    self:dispatchEvent({name = MapEvent.MAP_STOP_PLAY})
-    self:removeAllEventListeners()
+    -- self:dispatchEvent({name = MapEvent.MAP_STOP_PLAY})
+    -- self:removeAllEventListeners()
 
     self.starting_ = false
 end
@@ -242,6 +242,7 @@ function MapRuntime:tick(dt)
                         })
                     end
                 elseif event == MAP_EVENT_FIRE then
+                    cc.exports.allfireTarget = {};
                     allfireTarget = t[4];
                     handler:fire(object1, object2,allfireTarget)
                 elseif event == MAP_EVENT_NO_FIRE_TARGET then
@@ -312,9 +313,9 @@ end
 function MapRuntime:removeObject(object, delay)
     if delay then
         print("MapRuntime:removeObject " .. delay)
-        object:getView():performWithDelay(function()
+        performWithDelay(object:getView(),function()
             self.map_:removeObject(object)
-        end, delay)
+        end, delay);
     else
         self.map_:removeObject(object)
     end

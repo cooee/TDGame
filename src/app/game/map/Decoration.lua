@@ -118,7 +118,8 @@ function Decoration:playAnimationOnce(onComplete)
             self:removeView()
         end
     end
-    local action = self.sprite_:playAnimationOnce(self.animation_, self.removeAfterPlay_, onComplete, self.delay_)
+    local args = {delay = self.delay_,onComplete = onComplete}
+    local action = self.sprite_:playAnimationOnce(self.animation_, args)
     self.actions_[#self.actions_ + 1] = action
 end
 
@@ -129,7 +130,9 @@ function Decoration:playAnimationOnceAndRemove(onComplete)
         if userOnComplete then userOnComplete() end
         self:removeView()
     end
-    local action = self.sprite_:playAnimationOnce(self.animation_, self.removeAfterPlay_, onComplete, self.delay_)
+
+    local args = {delay = self.delay_,onComplete = onComplete,removeSelf = true}
+    local action = self.sprite_:playAnimationOnce(self.animation_,args)
     self.actions_[#self.actions_ + 1] = action
 end
 
