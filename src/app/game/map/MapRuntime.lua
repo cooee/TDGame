@@ -220,7 +220,7 @@ function MapRuntime:tick(dt)
                 if event == MAP_EVENT_COLLISION_BEGAN then
                     if object2.classIndex_ == CLASS_INDEX_RANGE then
                         handler:objectEnterRange(object1, object2)
-                        self:dispatchEvent({name = MapEvent.OBJECT_ENTER_RANGE, object = object1, range = object2})
+                        -- self:dispatchEvent({name = MapEvent.OBJECT_ENTER_RANGE, object = object1, range = object2})
                     else
                         handler:objectCollisionBegan(object1, object2)
                         self:dispatchEvent({

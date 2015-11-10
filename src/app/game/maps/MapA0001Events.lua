@@ -41,7 +41,12 @@ function MyMapEventHandler:objectEnterRange(object, range)
     MyMapEventHandler.super.objectEnterRange(self, object, range)
 
     local rid = range:getId()
-    if object.defineId_ == "move" and (rid == "range:28" or rid == "range:30") then
+    -- if object.defineId_ == "move" and (rid == "range:28" or rid == "range:30") then
+    --     self.runtime_:removeObject(object)
+    --     self.enemyCount_ = self.enemyCount_ - 1
+    -- end
+
+    if object.defineId_ == "move" then
         self.runtime_:removeObject(object)
         self.enemyCount_ = self.enemyCount_ - 1
     end

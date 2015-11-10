@@ -117,8 +117,8 @@ function ObjectTool:createObjectBindingLabel(text, isStaticLabel)
         text         = text,
         size         = 20,
         align        = ui.TEXT_ALIGN_CENTER,
-        color        = ccc3(255, 100, 100),
-        colorOutline = ccc3(255, 255, 255),
+        color        = cc.c3b(255, 100, 100),
+        colorOutline = cc.c3b(255, 255, 255),
         x            = labelX,
         y            = labelY,
     })

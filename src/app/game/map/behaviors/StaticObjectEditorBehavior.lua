@@ -53,7 +53,7 @@ function StaticObjectEditorBehavior:bind(object)
 
         object.flagSprite_ = display.newSprite("#PointFlag.png")
         debugLayer:addChild(object.flagSprite_, EditorConstants.FLAG_ZORDER)
-        -- object.flagSprite_:setColor(ccc3(255,0,0));
+        -- object.flagSprite_:setColor(cc.c3b(255,0,0));
         if object:hasBehavior("FireBehavior") then
             object.fireRangeCircle_ = display.newCircle(object.fireRange_)
             object.fireRangeCircle_:setVisible(false);
@@ -63,15 +63,15 @@ function StaticObjectEditorBehavior:bind(object)
         if object:hasBehavior("UpgradeBehavior") then
             object.levelLabel_ = g_UICreator:createLabelTTF("Lv." .. object:getLevel(), EditorConstants.LABEL_FONT_SIZE);
             debugLayer:addChild(object.levelLabel_)
-            object.levelLabel_:setColor(ccc3(255,255,0))
+            object.levelLabel_:setColor(cc.c3b(255,255,0))
         end
 
         if object:hasBehavior("PlayerBehavior") then
             object.playerIdLabel_ = ui.newTTFLabelWithOutline({
                 text         = "Player",
                 size         = 24,
-                outlineColor = ccc3(10, 115, 107),
-                color        = ccc3(255, 255, 255),
+                outlineColor = cc.c3b(10, 115, 107),
+                color        = cc.c3b(255, 255, 255),
                 align        = ui.TEXT_ALIGN_CENTER,
             })
             debugLayer:addChild(object.playerIdLabel_)
@@ -134,12 +134,12 @@ function StaticObjectEditorBehavior:bind(object)
         if object.isSelected_ then
             object.flagSprite_:setVisible(true);
             object.idLabel_:setVisible(true);
-            object.idLabel_:setColor(ccc3(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
+            object.idLabel_:setColor(cc.c3b(unpack(EditorConstants.SELECTED_LABEL_COLOR)))
             object.radiusCircle_:setVisible(true);
         else
             object.flagSprite_:setVisible(false);
             object.idLabel_:setVisible(false);
-            object.idLabel_:setColor(ccc3(unpack(EditorConstants.UNSELECTED_LABEL_COLOR)))
+            object.idLabel_:setColor(cc.c3b(unpack(EditorConstants.UNSELECTED_LABEL_COLOR)))
             object.radiusCircle_:setVisible(false);
         end
         object.flagSprite_:setScale(scale)

@@ -46,13 +46,13 @@ function MapEventHandler:time(time, dt)
             local holdTimeDt = holdTime - times[2]
             times[2] = holdTime
             self:objectInRange(object, range, holdTime, holdTimeDt)
-            self.runtime_:dispatchEvent({
-                name       = MapEvent.OBJECT_IN_RANGE,
-                object     = object,
-                range      = range,
-                holdTime   = holdTime,
-                holdTimeDt = holdTimeDt,
-            })
+            -- self.runtime_:dispatchEvent({
+            --     name       = MapEvent.OBJECT_IN_RANGE,
+            --     object     = object,
+            --     range      = range,
+            --     holdTime   = holdTime,
+            --     holdTimeDt = holdTimeDt,
+            -- })
         end
     end
 end

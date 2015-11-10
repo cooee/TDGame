@@ -86,7 +86,7 @@ function PathTool:showPointLabel(x, y, text)
             text         = "000",
             font         = EditorConstants.LABEL_FONT,
             size         = EditorConstants.LABEL_FONT_SIZE + 10,
-            color        = ccc3(255, 0, 0),
+            color        = cc.c3b(255, 0, 0),
         })
 
         self.map_:getDebugLayer():addChild(self.currentPointLabel_, EditorConstants.LABEL_ZORDER)

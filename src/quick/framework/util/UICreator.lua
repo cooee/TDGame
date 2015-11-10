@@ -174,7 +174,7 @@ end
 function UICreator:showMsg(text,params)
     local fontsize = 48;
     local delay = 0.5;
-    local textColor = ccc3(100, 255, 100);
+    local textColor = cc.c3b(100, 255, 100);
     if params then
         fontsize        = params.fontsize or fontsize
         delay           = params.delay or delay

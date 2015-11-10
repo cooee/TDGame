@@ -11,7 +11,7 @@ function ArrowBullet:ctor(source, target, delay)
     }
     local sprite = display.newSprite("arrow_bullet30.png")
     sprite:setVisible(params.delay == 0)
-    local streak = CCMotionStreak:create(0.5, 10, 10, ccc3(0, 255, 0), "arrow_bullet40.png");   
+    local streak = CCMotionStreak:create(0.5, 10, 10, cc.c3b(0, 255, 0), "arrow_bullet40.png");   
     target.map_:getBatchLayer():addChild(streak);
     -- sprite:addChild(streak)
     -- streak:setPosition(source.x_,source.y_);

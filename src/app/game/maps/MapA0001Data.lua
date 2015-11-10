@@ -24,8 +24,8 @@ objects["path:26"] = object
 local object = {
     radius = 51,
     tag = 0,
-    x = 300,
-    y = 301,
+    x = 842,
+    y = 207,
 }
 objects["range:21"] = object
 
