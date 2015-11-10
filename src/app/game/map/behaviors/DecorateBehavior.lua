@@ -32,7 +32,7 @@ function DecorateBehavior:bind(object)
     object:bindMethod(self, "getDecoration", getDecoration)
 
     local function updateView(object)
-        local objectZOrder = object:getView():getZOrder()
+        local objectZOrder = object:getView():getLocalZOrder()
         local batch        = object.batch_
         local x, y         = object.x_, object.y_
         local flip         = object.flipSprite_
@@ -73,7 +73,7 @@ function DecorateBehavior:bind(object)
     local function fastUpdateView(object)
         if not object.updated__ then return end
 
-        local objectZOrder = object:getView():getZOrder()
+        local objectZOrder = object:getView():getLocalZOrder()
         local batch        = object.batch_
         local x, y         = object.x_, object.y_
         local flip         = object.flipSprite_

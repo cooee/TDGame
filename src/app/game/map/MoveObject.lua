@@ -41,10 +41,11 @@ end
 function MoveObject:createMoveSprite(file)
     print("file " .. file);
     local pHeroTexture = nil;
-    if CCTextureCache:sharedTextureCache():textureForKey(file) then
-        pHeroTexture = CCTextureCache:sharedTextureCache():textureForKey(file);
+
+    if cc.TextureCache:getInstance():getTextureForKey(file) then
+        pHeroTexture = cc.TextureCache:getInstance():getTextureForKey(file);
     else
-        pHeroTexture = CCTextureCache:sharedTextureCache():addImage(file);
+        pHeroTexture = cc.TextureCache:getInstance():addImage(file);
     end
     
     local size = pHeroTexture:getContentSize();
@@ -57,7 +58,7 @@ function MoveObject:createMoveSprite(file)
     for k=0,3 do
         local frames = {};
         for i=0,3 do
-            local frame = CCSpriteFrame:createWithTexture(pHeroTexture,cc.RectMake(cellWidth*i,k*cellHeight,cellWidth,cellHeight));
+            local frame = CCSpriteFrame:createWithTexture(pHeroTexture,cc.rect(cellWidth*i,k*cellHeight,cellWidth,cellHeight));
             frames[#frames + 1] = frame;
             if firstFrame == nil then
                 firstFrame = frame;
@@ -142,10 +143,9 @@ function MoveObject:createView(batch, marksLayer, debugLayer)
     end
 
     self.offsetY_ = self.spriteSize_[2]/2;
-    self.sprite_:addNodeEventListener(cc.NODE_EVENT, function(event)
-        if event.name == "exit" then
-            self:release()
-        end
+
+    self.sprite_:onNodeEvent("exit", function(event)
+        self:release()
     end)
     batch:addChild(self.sprite_);
     self:setDirection(MOVEDOWN);

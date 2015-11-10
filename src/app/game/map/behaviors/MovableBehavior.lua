@@ -207,7 +207,7 @@ function MovableBehavior:bind(object)
     object:bindMethod(self, "isMoving", isMoving)
 
     local function tick(object, dt)
-        local TimeScale = CCDirector:sharedDirector():getScheduler():getTimeScale();
+        local TimeScale = CCDirector:getInstance():getScheduler():getTimeScale();
         for i=1,TimeScale do
             if not object.play_ or object.movingLocked_ > 0 or not object.bindingPathId_ then return end
 

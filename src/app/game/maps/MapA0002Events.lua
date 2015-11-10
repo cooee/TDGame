@@ -1,6 +1,6 @@
 
-local MapEvent        = require("game.map.MapEvent")
-local MapEventHandler = require("game.map.MapEventHandler")
+local MapEvent        = require("app.game.map.MapEvent")
+local MapEventHandler = require("app.game.map.MapEventHandler")
 
 local MAX_ENEMY_COUNT = 30
 

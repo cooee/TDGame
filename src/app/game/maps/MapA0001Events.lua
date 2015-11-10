@@ -1,45 +1,55 @@
-local MapEvent        = require("game.map.MapEvent")
-local MapEventHandler = require("game.map.MapEventHandler")
+
+local MapEvent        = require("app.game.map.MapEvent")
+local MapEventHandler = require("app.game.map.MapEventHandler")
+
+local MAX_ENEMY_COUNT = 30
 
 local MyMapEventHandler = class("MyMapEventHandler", MapEventHandler)
 
 function MyMapEventHandler:preparePlay()
     MyMapEventHandler.super.preparePlay(self)
 
-    self.createNextEnemyDelay_    = 0.1 -- 等待多少时间创建下一个敌人
-    self.createNextEnemyInterval_ = 1.0 -- 创建下一个敌人前的间隔时间
-    self.createNextEnemyOnPathIndex_ = 2 -- 下一个敌人在哪一条路径
+    self.createNextEnemyDelay_    = 1 -- 等待多少时间创建下一个敌人
+    self.createNextEnemyInterval_ = 100000 -- 创建下一个敌人前的间隔时间
+    self.enemyCount_              = 0 -- 敌人总数
 end
 
 function MyMapEventHandler:time(time, dt)
     MyMapEventHandler.super.time(self, time, dt)
-
     self.createNextEnemyDelay_ = self.createNextEnemyDelay_ - dt
-    if self.createNextEnemyDelay_ <= 0 then
+    if self.createNextEnemyDelay_ <= 0 and self.enemyCount_ < MAX_ENEMY_COUNT then
+
         self.createNextEnemyDelay_ = self.createNextEnemyDelay_ + self.createNextEnemyInterval_
 
         local state = {
-            defineId = "EnemyShip01",
-            behaviors = "NPCBehavior",
+            defineId = "move"
         }
-        local enemy = self.runtime_:newObject("static", state)
-        local pathId = string.format("path:%d", self.createNextEnemyOnPathIndex_)
+        local enemy = self.runtime_:newObject("move", state)
+        local pathId = string.format("path:%d", 26)
         enemy:bindPath(self.map_:getObject(pathId), 1)
+        enemy:setSpeed(400)
         enemy:startMoving()
+        dump(enemy)
+        dump(dt)
 
-        self.createNextEnemyOnPathIndex_ = self.createNextEnemyOnPathIndex_ + 1
-        if self.createNextEnemyOnPathIndex_ > 2 then
-            self.createNextEnemyOnPathIndex_ = 1
-        end
+        self.enemyCount_ = self.enemyCount_ + 1
     end
 end
 
+--到达目标
 function MyMapEventHandler:objectEnterRange(object, range)
     MyMapEventHandler.super.objectEnterRange(self, object, range)
 
-    if object.defineId_ == "EnemyShip01" and range:getId() == "range:21" then
+    local rid = range:getId()
+    if object.defineId_ == "move" and (rid == "range:28" or rid == "range:30") then
         self.runtime_:removeObject(object)
+        self.enemyCount_ = self.enemyCount_ - 1
     end
+end
+
+function MyMapEventHandler:objectDestroyed(object)
+    MyMapEventHandler.super.objectDestroyed(self, object)
+    self.enemyCount_ = self.enemyCount_ - 1
 end
 
 return MyMapEventHandler

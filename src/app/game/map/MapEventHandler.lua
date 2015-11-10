@@ -1,8 +1,8 @@
 
-local MapConstants    = require("game.map.MapConstants")
-local MapEvent        = require("game.map.MapEvent")
-local MovableBehavior = require("game.map.behaviors.MovableBehavior")
-local BulletBase      = require("game.map.bullets.BulletBase")
+local MapConstants    = require("app.game.map.MapConstants")
+local MapEvent        = require("app.game.map.MapEvent")
+local MovableBehavior = require("app.game.map.behaviors.MovableBehavior")
+local BulletBase      = require("app.game.map.bullets.BulletBase")
 
 local MapEventHandler = class("MapEventHandler")
 
@@ -17,7 +17,7 @@ end
 
 -- 准备开始游戏
 function MapEventHandler:addListener()
-    g_eventManager:addEventListener("destroyed", function(sender,target)
+    g_EventManager:addEventListener("destroyed", function(sender,target)
         print("addListener")
         self:destroyed(target)
     end,self);

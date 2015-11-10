@@ -155,7 +155,7 @@ function EditorScene:ctor()
     -- self.uiLayer_:addChild(gameInfoUI);
 
 
-    -- self:editMap()
+    self:editMap()
 
     self:addListener();
 
@@ -167,7 +167,7 @@ function EditorScene:addListener()
 
     ---开始游戏
     g_EventManager:addEventListener(Event.PLAY_MAP, function()
-   
+        self:playMap();
     end, self)
 
     --炮塔位置不合法
@@ -191,8 +191,8 @@ function EditorScene:playMap()
 
     -- 保存地图当前状态
     self.mapState_ = self.map_:vardump()
-    self.playToolbar_:setVisible(true)
-    self.mapNameLabel_:setVisible(false)
+    -- self.playToolbar_:setVisible(true)
+    -- self.mapNameLabel_:setVisible(false)
 
     self.map_:setDebugViewEnabled(false)
     self.map_:getBackgroundLayer():setVisible(true)
@@ -209,7 +209,7 @@ function EditorScene:playMap()
     collectgarbage()
 
     -- 开始执行地图
-    self.mapRuntime_ = require("game.map.MapRuntime").new(self.map_)
+    self.mapRuntime_ = require("app.game.map.MapRuntime").new(self.map_)
     self.mapRuntime_:preparePlay()
     self.mapRuntime_:startPlay()
     self:addChild(self.mapRuntime_)
@@ -217,7 +217,7 @@ end
 
 -- 开始编辑地图
 function EditorScene:editMap()
-    CCDirector:sharedDirector():setDisplayStats(false)
+    -- CCDirector:sharedDirector():setDisplayStats(false)
 
     if self.mapRuntime_ then
         self.mapRuntime_:stopPlay()
@@ -235,8 +235,8 @@ function EditorScene:editMap()
     end
     self.toolbar_:getToolByName("ObjectTool"):reset();
     self.toolbar_:getView():setVisible(true)
-    self.playToolbar_:setVisible(false)
-    self.mapNameLabel_:setVisible(true)
+    -- self.playToolbar_:setVisible(false)
+    -- self.mapNameLabel_:setVisible(true)
 
     local camera = self.map_:getCamera()
     camera:setMargin(EditorConstants.MAP_PADDING,
@@ -255,12 +255,10 @@ end
 
 function EditorScene:tick(dt)
     -- dump(dt)
-    if self.mapRuntime_ then
-        -- for i=1,1 do
-        --     self.mapRuntime_:tick(dt)
-        -- end
-        self.mapRuntime_:tick(dt)
-        
+    if self.mapRuntime_ and self.mapRuntime_.tick then
+        for i=1,1 do
+            self.mapRuntime_:tick(dt)
+        end   
     end
 end
 

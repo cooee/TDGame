@@ -10,11 +10,14 @@ local objects = {}
 
 local object = {
     points = {
-        {x = 510, y = 252}, {x = 459, y = 312},
-        {x = 546, y = 301},
+        {x = 200, y = 520}, {x = 202, y = 439},
+        {x = 120, y = 439}, {x = 122, y = 208},
+        {x = 192, y = 203}, {x = 205, y = 122},
+        {x = 434, y = 120}, {x = 444, y = 202},
+        {x = 842, y = 207},
     }
 }
-objects["path:22"] = object
+objects["path:26"] = object
 
 ----
 
@@ -47,9 +50,6 @@ local object = {
     y = 519,
 }
 objects["static:25"] = object
-
-----
-
 
 ----
 

@@ -1,9 +1,9 @@
 
-local MapEvent     = require("game.map.MapEvent")
-local MapConstants = require("game.map.MapConstants")
-local Decoration   = require("game.map.Decoration")
-local ObjectBase   = require("game.map.ObjectBase")
-local math2d       = require("math2d")
+local MapEvent     = require("app.game.map.MapEvent")
+local MapConstants = require("app.game.map.MapConstants")
+local Decoration   = require("app.game.map.Decoration")
+local ObjectBase   = require("app.game.map.ObjectBase")
+local math2d       = require("app.game.math2d")
 
 local MapRuntime = class("MapRuntime", function()
     return display.newNode()
@@ -20,7 +20,7 @@ local CLASS_INDEX_STATIC = ObjectBase.CLASS_INDEX_STATIC
 local CLASS_INDEX_MOVE   = ObjectBase.CLASS_INDEX_MOVE
 
 function MapRuntime:ctor(map)
-    cc(self):addComponent("components.behavior.EventProtocol"):exportMethods()
+    -- cc(self):addComponent("components.behavior.EventProtocol"):exportMethods()
 
     self.debug_                = map:isDebug()
     self.map_                  = map
@@ -45,7 +45,7 @@ function MapRuntime:ctor(map)
     self.skillNeedTime_        = {0, 0, 0, 0, 0}
     self.colls_                = {} -- 用于跟踪碰撞状态
 
-    local eventHandlerModuleName = string.format("maps.Map%sEvents", map:getId())
+    local eventHandlerModuleName = string.format("app.game.maps.Map%sEvents", map:getId())
     local eventHandlerModule = require(eventHandlerModuleName)
     self.handler_ = eventHandlerModule.new(self, map)
 
@@ -64,7 +64,7 @@ end
 
 function MapRuntime:preparePlay()
     self.handler_:preparePlay()
-    self:dispatchEvent({name = MapEvent.MAP_PREPARE_PLAY})
+    -- self:dispatchEvent({name = MapEvent.MAP_PREPARE_PLAY})
 
     for id, object in pairs(self.map_:getAllObjects()) do
         object:validate()
@@ -105,7 +105,7 @@ function MapRuntime:startPlay()
     end
 
     self.handler_:startPlay(state)
-    self:dispatchEvent({name = MapEvent.MAP_START_PLAY})
+    -- self:dispatchEvent({name = MapEvent.MAP_START_PLAY})
 
     -- self:start() -- start physics world
 end
@@ -169,6 +169,7 @@ function MapRuntime:onTouch(event, x, y)
 end
 
 function MapRuntime:tick(dt)
+
     if not self.starting_ or self.paused_ then return end
 
     local handler = self.handler_
@@ -181,7 +182,7 @@ function MapRuntime:tick(dt)
             handler:time(self.time_, secondsDelta)
         end
     end
-    local TimeScale = CCDirector:sharedDirector():getScheduler():getTimeScale();
+    local TimeScale = CCDirector:getInstance():getScheduler():getTimeScale();
     for i=1,1 do
         -- 更新所有对象后
         local maxZOrder = MapConstants.MAX_OBJECT_ZORDER
@@ -331,7 +332,7 @@ function MapRuntime:newDecoration(decorationName, target, x, y)
     local view = decoration:getView()
     if target then
         local targetView = target:getView()
-        self.batch_:reorderChild(view, targetView:getZOrder() + decoration.zorder_)
+        self.batch_:reorderChild(view, targetView:getLocalZOrder() + decoration.zorder_)
         local ox, oy = checknumber(x), checknumber(y)
         x, y = target:getPosition()
         x = math.floor(x)

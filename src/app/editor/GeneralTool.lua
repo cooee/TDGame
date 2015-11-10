@@ -64,7 +64,6 @@ function GeneralTool:selected(selectedButtonName)
         self.toolbar_:selectButton("GeneralTool", 1)
 
     elseif selectedButtonName == "PlayMap" then
-        -- self.toolbar_:dispatchEvent({name = "PLAY_MAP"})
         g_EventManager:dispatchEvent(Event.PLAY_MAP)
         self.toolbar_:selectButton("GeneralTool", 1)
     end
