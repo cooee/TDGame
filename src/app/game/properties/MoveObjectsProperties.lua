@@ -16,7 +16,7 @@ local defines = {}
 
 local object = {
     classId       = "move", -- 类型
-    npcId         = "NPC002", ---控制npc数据
+    npcId         = "NPC001", ---控制npc数据
     behaviors     = {"EnemyBehavior"},
 }
 
