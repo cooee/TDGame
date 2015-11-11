@@ -9,6 +9,7 @@ local behaviorsClass = {
     DestroyedBehavior          = import(".DestroyedBehavior"),
     TowerBehavior              = import(".TowerBehavior"),
     NPCBehavior                = import(".NPCBehavior"),
+    EnemyBehavior              = import(".EnemyBehavior"),
 
     PathEditorBehavior         = import(".PathEditorBehavior"),
     RangeEditorBehavior        = import(".RangeEditorBehavior"),

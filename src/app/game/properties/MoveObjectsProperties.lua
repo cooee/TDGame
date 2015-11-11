@@ -15,13 +15,9 @@ local defines = {}
 ----------------------------------------
 
 local object = {
-    classId       = "move",
-    imageName     =  "temp.png",
-    radius        = 40,
-    radiusOffsetY = 30,
-    framesTime    = 0.25,
-    scale         = 1.2,
-    behaviors     = {"NPCBehavior"},
+    classId       = "move", -- 类型
+    npcId         = "NPC002", ---控制npc数据
+    behaviors     = {"EnemyBehavior"},
 }
 
 defines["move"] = object

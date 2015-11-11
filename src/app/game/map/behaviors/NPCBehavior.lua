@@ -7,7 +7,6 @@ local NPCBehavior = class("NPCBehavior", BehaviorBase)
 function NPCBehavior:ctor()
     local depends = {
         "DestroyedBehavior",
-        -- "FireBehavior",
         "MovableBehavior",
         "DecorateBehavior",
         "BloodBehavior",
@@ -17,6 +16,7 @@ end
 
 function NPCBehavior:bind(object)
     object.npcId_ = object.state_.npcId
+    dump(object)
     if type(object.npcId_) ~= "string" then object.npcId_ = "" end
 
     local function getNPCId(object)

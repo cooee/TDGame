@@ -92,8 +92,10 @@ function MainScene:createResoueceNode2(resourceFilename)
     draw:drawPoly(vertices, 5, false, cc.c4f(math.random(0,1), math.random(0,1), math.random(0,1), 1))
 
 
-    local node = display.newRect(100, 100)
-    node:addTo(self);
+
+    local label = CCLabelBMFont:create("1", "fonts/font_damage_cri.fnt");
+    label:move(100,100)
+    self:addChild(label, 1);
 
 
 end
