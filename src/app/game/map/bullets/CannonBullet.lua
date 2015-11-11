@@ -20,7 +20,7 @@ function CannonBullet:ctor(source, target, delay, spriteName, params)
     local emitter = CCParticleSystemQuad:create("magic_fire_2.plist");
     local batch = CCParticleBatchNode:createWithTexture(emitter:getTexture())
     batch:addChild(emitter)
-    batch:setPosition(ccp(0,0));
+    batch:setPosition(cc.p(0,0));
     sprite:addChild(batch, 10)
 
     return CannonBullet.super.ctor(self, source, target, sprite, params)

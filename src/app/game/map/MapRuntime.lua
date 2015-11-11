@@ -158,11 +158,11 @@ function MapRuntime:onTouch(event, x, y)
             --     local view = object:getView();
             --     -- view:setScale(2)
             -- end
-            g_eventManager:dispatchEvent("showTowerInfo",object);
+            g_EventManager:dispatchEvent("showTowerInfo",object);
             self.map_:setObjectDebugViewEnabled(true,object)
         end
     else
-        g_eventManager:dispatchEvent("touchMap",event, x, y);
+        g_EventManager:dispatchEvent("touchMap",event, x, y);
         self.map_:setDebugViewEnabled(false)
     end
 
@@ -223,23 +223,23 @@ function MapRuntime:tick(dt)
                         -- self:dispatchEvent({name = MapEvent.OBJECT_ENTER_RANGE, object = object1, range = object2})
                     else
                         handler:objectCollisionBegan(object1, object2)
-                        self:dispatchEvent({
-                            name = MapEvent.OBJECT_COLLISION_BEGAN,
-                            object1 = object1,
-                            object2 = object2,
-                        })
+                        -- self:dispatchEvent({
+                        --     name = MapEvent.OBJECT_COLLISION_BEGAN,
+                        --     object1 = object1,
+                        --     object2 = object2,
+                        -- })
                     end
                 elseif event == MAP_EVENT_COLLISION_ENDED then
                     if object2.classIndex_ == CLASS_INDEX_RANGE then
                         handler:objectExitRange(object1, object2)
-                        self:dispatchEvent({name = MapEvent.OBJECT_EXIT_RANGE, object = object1, range = object2})
+                        -- self:dispatchEvent({name = MapEvent.OBJECT_EXIT_RANGE, object = object1, range = object2})
                     else
                         handler:objectCollisionEnded(object1, object2)
-                        self:dispatchEvent({
-                            name = MapEvent.OBJECT_COLLISION_ENDED,
-                            object1 = object1,
-                            object2 = object2,
-                        })
+                        -- self:dispatchEvent({
+                        --     name = MapEvent.OBJECT_COLLISION_ENDED,
+                        --     object1 = object1,
+                        --     object2 = object2,
+                        -- })
                     end
                 elseif event == MAP_EVENT_FIRE then
                     cc.exports.allfireTarget = {};
@@ -355,27 +355,27 @@ end
 function MapRuntime:winGame(player)
     if self.over_ then return end
     self.over_ = true
-    self:dispatchEvent({name = MapEvent.MAP_WIN})
+    -- self:dispatchEvent({name = MapEvent.MAP_WIN})
     self:pausePlay()
 end
 
 function MapRuntime:loseGame(player)
     if self.over_ then return end
     self.over_ = true
-    self:dispatchEvent({name = MapEvent.MAP_LOSE})
+    -- self:dispatchEvent({name = MapEvent.MAP_LOSE})
     self:pausePlay()
 end
 
 function MapRuntime:pausePlay()
     if not self.paused_ then
-        self:dispatchEvent({name = MapEvent.MAP_PAUSE_PLAY})
+        -- self:dispatchEvent({name = MapEvent.MAP_PAUSE_PLAY})
     end
     self.paused_ = true
 end
 
 function MapRuntime:resumePlay()
     if self.paused_ then
-        self:dispatchEvent({name = MapEvent.MAP_RESUME_PLAY})
+        -- self:dispatchEvent({name = MapEvent.MAP_RESUME_PLAY})
     end
     self.paused_ = false
 end

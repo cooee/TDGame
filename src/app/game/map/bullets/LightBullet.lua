@@ -21,14 +21,14 @@ function LightBullet:ctor(source, target, delay)
     local anim2 = Decoration.new("LightBulletAnim",1);
     anim2:createView(target.map_:getBatchLayer());
     anim2:getView():setPosition(source.x_,source.y_ + 30);
-    anim2:getView():setAnchorPoint(ccp(0,0.5));
+    anim2:getView():setAnchorPoint(cc.p(0,0.5));
     anim2:setVisible(false);
     local sprite = anim2:getView();
     anim2:playAnimationOnce(function()
         anim2:setVisible(false);
     end);
     self.anim = anim2;
-    sprite:setZOrder(21000);
+    sprite:setLocalZOrder(21000);
 
 
     LightBullet.super.ctor(self, source, target, sprite, params.delay)

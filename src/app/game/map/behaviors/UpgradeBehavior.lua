@@ -31,7 +31,7 @@ function UpgradeBehavior:bind(object)
         if define then
             object:setTowerId(towerID);
             object:setLevel(level);
-            g_Toast:showMsg("升级成功",ccp(object.x_,object.y_ + 50));
+            g_Toast:showMsg("升级成功",cc.p(object.x_,object.y_ + 50));
 
             if object:hasBehavior("TowerDecorateBehavior") then
             local decorationName = object:getDecorationName();
